@@ -1,1 +1,114 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DailyMind – 60 Günlük Kişisel Gelişim ve Mindfulness Sistemi</title>
+<meta name="description" content="DailyMind, 60 günlük bilimsel ve uygulamalı kişisel gelişim programı ile zihinsel farkındalık, duygusal farkındalık ve motivasyonu artırmak için tasarlanmıştır. Her gün 1–2 dakikalık kısa videolar, nefes egzersizleri, mini mindfulness uygulamaları ve düşünce farkındalığı ile zihinsel esnekliğinizi güçlendirir.">
+<meta name="keywords" content="kişisel gelişim, mindfulness, nefes egzersizi, duygusal farkındalık, thought defusion, zihinsel farkındalık, mini mindfulness, stres yönetimi, psikolojik sağlık, günlük kişisel gelişim, 60 günlük program">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="DailyMind – 60 Günlük Kişisel Gelişim ve Mindfulness Sistemi">
+<meta property="og:description" content="DailyMind, 60 günlük bilimsel ve uygulamalı kişisel gelişim programı ile zihinsel farkındalık, duygusal farkındalık ve motivasyonu artırmak için tasarlanmıştır. Her gün 1–2 dakikalık kısa videolar, nefes egzersizleri, mini mindfulness uygulamaları ve düşünce farkındalığı ile zihinsel esnekliğinizi güçlendirir.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DailyMind – 60 Günlük Kişisel Gelişim ve Mindfulness Sistemi">
+<meta name="twitter:description" content="DailyMind, 60 günlük bilimsel ve uygulamalı kişisel gelişim programı ile zihinsel farkındalık, duygusal farkındalık ve motivasyonu artırmak için tasarlanmıştır. Her gün 1–2 dakikalık kısa videolar, nefes egzersizleri, mini mindfulness uygulamaları ve düşünce farkındalığı ile zihinsel esnekliğinizi güçlendirir.">
+<meta name="twitter:image" content="">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+  .offcanvas {
+  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+}
+</style>
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h3><strong>Giriş – Kendini Keşfet, Zihnini Güçlendir</strong></h3><p>DailyMind, <strong>60 günlük bilimsel ve uygulamalı kişisel gelişim programı</strong> ile zihinsel farkındalık, duygusal farkındalık ve motivasyonu artırmak için tasarlanmıştır. Her gün 1–2 dakikalık kısa videolar, nefes egzersizleri, mini mindfulness uygulamaları ve düşünce farkındalığı ile zihinsel esnekliğinizi güçlendirir.</p><blockquote>“Farkındalık, zihninizi ve duygularınızı yönetmenin en etkili yoludur.” – Kabat-Zinn, J. (1990). <em>Full Catastrophe Living</em></blockquote><h3><strong>60 Günlük Sistem Hakkında</strong></h3><p>Program, 6 temel başlık altında ilerler:</p><ol><li><strong>Duygusal Farkındalık:</strong> Temel duyguları tanıma, yüz ifadelerini gözlemleme ve mini farkındalık egzersizleri</li><li><strong>Nefes ve Mindfulness:</strong> 1 dakikalık nefes farkındalıkları ve zihinsel sakinleşme uygulamaları</li><li><strong>Thought Defusion (Düşünceyi Gözlemleme):</strong> Olumsuz ve tekrarlayan düşüncelerden mesafe kazanma</li><li><strong>Kognitif Yeniden Çerçeveleme:</strong> Stres ve kaygıyı azaltma, zihinsel yeniden yapılandırma teknikleri</li><li><strong>Zihinsel Dayanıklılık:</strong> Günlük kısa egzersizler ile psikolojik sağlamlık ve esneklik geliştirme</li><li><strong>Motivasyon ve İçsel Hedefler:</strong> Kendine odaklanma, motivasyonu artırma ve küçük hedeflerle ilerleme</li></ol><p>Her başlık için <strong>günlük videolar</strong>, bilimsel referanslar ve kısa uygulamalı egzersizler sunulmaktadır.</p><p><br></p><h3><strong>Programın Faydaları</strong></h3><ul><li>Duygusal farkındalık ve empati yeteneği kazanma</li><li>Stres, kaygı ve olumsuz düşüncelerle başa çıkma</li><li>Günlük farkındalık ve mindfulness alışkanlığı oluşturma</li><li>Zihinsel esneklik ve dayanıklılığı artırma</li><li>Kısa süreli egzersizlerle günlük yaşamda uygulanabilir kişisel gelişim</li></ul><h3><strong>Nasıl Başlanır?</strong></h3><ol><li>Her gün sırayla videoları izleyin.</li><li>Mini egzersizleri uygulayın ve kendi notlarınızı alın.</li><li>Zamanla farkındalık seviyenizi ve duygusal zekanızı artırın.</li><li>İleriye dönük olarak programı tamamladığınızda <strong>zihinsel esnekliğiniz ve farkındalığınız artacaktır</strong>.</li></ol><h3><strong>Örnek Videolar</strong></h3><ul><li><a href="https://bandanee.github.io/DailyMind/ocak/23-ocak-2026-video2/" rel="noopener noreferrer" target="_blank">23 Ocak 2026 – Video 2: Duygularını Tanıyor musun?</a></li><li><a href="https://bandanee.github.io/DailyMind/ocak/23-ocak-2026-video3/" rel="noopener noreferrer" target="_blank">23 Ocak 2026 – Video 3: Nefesle Farkındalık Başlangıcı</a></li></ul><blockquote><strong>Not:</strong> Tüm videolar, kısa süreli, bilimsel referanslı ve uygulanabilir mini egzersizler içerir.</blockquote><p><br></p>
+</main>
+</div>
+
+
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
