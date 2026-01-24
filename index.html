@@ -157,69 +157,16 @@ bilişsel esneklik ve dikkat çalışmalarıdır.
 
 <h3><strong>Sistemin Ana Yapı Taşları</strong></h3>
 
-<ol>
-  <li>
-    <strong>
-      <a href="https://bandanee.github.io/DailyMind/duygusal-farkindalik/" target="_blank" rel="noopener noreferrer">
-        Duygusal Farkındalık
-      </a>
-    </strong><br>
-    Duyguları bastırmadan fark etmeyi,
-    bedensel sinyalleri okumayı ve
-    otomatik tepkiler yerine bilinçli seçimler yapmayı öğretir.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://bandanee.github.io/DailyMind/nefes-ve-mindfulness/" target="_blank" rel="noopener noreferrer">
-        Nefes &amp; Mindfulness
-      </a>
-    </strong><br>
-    Günde 1–2 dakikalık çalışmalarla
-    dikkat dağınıklığını azaltmayı,
-    sinir sistemini düzenlemeyi ve anda kalmayı destekler.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://bandanee.github.io/DailyMind/thought-defusion/" target="_blank" rel="noopener noreferrer">
-        Thought Defusion (Düşünceyle Mesafe)
-      </a>
-    </strong><br>
-    “Ben buyum”, “Hep böyle olacak” gibi düşüncelerin
-    gerçek değil, zihinsel olaylar olduğunu fark ettirir.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://bandanee.github.io/DailyMind/kognitif-yeniden-cerceveleme/" target="_blank" rel="noopener noreferrer">
-        Kognitif Yeniden Çerçeveleme
-      </a>
-    </strong><br>
-    Olaylara tek açıdan değil,
-    esnek ve işlevsel bakış açılarıyla yaklaşmayı öğretir.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://bandanee.github.io/DailyMind/zihinsel-dayaniklilik/" target="_blank" rel="noopener noreferrer">
-        Zihinsel Dayanıklılık
-      </a>
-    </strong><br>
-    Zorlayıcı duygularla kaçmadan kalabilme,
-    toparlanma ve devam edebilme kapasitesini geliştirir.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://bandanee.github.io/DailyMind/degerler-ve-ic-motivasyon/" target="_blank" rel="noopener noreferrer">
-        Değerler &amp; İçsel Motivasyon
-      </a>
-    </strong><br>
-    Dış motivasyon yerine,
-    bireyin kendi değerleriyle uyumlu hedefler belirlemesini sağlar.
-  </li>
-</ol>
+<div id="kategoriler-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/dailymind/main/kategoriler.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('kategoriler-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
 
 
 <h3><strong>Disiplinler Arası Zihinsel Gelişim Alanları</strong></h3>
