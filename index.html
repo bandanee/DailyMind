@@ -202,7 +202,7 @@ bilişsel esneklik ve dikkat çalışmalarıdır.
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ================= FETCH JSON DATA ================= */
-  fetch('calendar.json') // <--- Burada JSON dosyanın yolunu yaz
+  fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/calendar.json') // <--- Burada JSON dosyanın yolunu yaz
     .then(response => {
       if (!response.ok) throw new Error('Veri çekilemedi');
       return response.json();
