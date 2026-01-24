@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>DailyMind – Duygusal Farkındalık</title>
+<meta name="description" content="DailyMind, duygusal farkındalık üzerine 60 günlük kişisel gelişim sistemi ile duygu yönetimi ve farkındalık pratiğini öğrenmenizi sağlar.">
+<meta name="keywords" content="duygusal farkındalık, mindfulness, duygu yönetimi, psikoloji, kişisel gelişim, mini mindfulness, stres yönetimi">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/duygusal-farkindalik/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="DailyMind – Duygusal Farkındalık">
+<meta property="og:description" content="DailyMind, duygusal farkındalık üzerine 60 günlük kişisel gelişim sistemi ile duygu yönetimi ve farkındalık pratiğini öğrenmenizi sağlar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/duygusal-farkindalik/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DailyMind – Duygusal Farkındalık">
+<meta name="twitter:description" content="DailyMind, duygusal farkındalık üzerine 60 günlük kişisel gelişim sistemi ile duygu yönetimi ve farkındalık pratiğini öğrenmenizi sağlar.">
+<meta name="twitter:image" content="">
+
+<!-- FullCalendar -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+.offcanvas { overflow: auto; }
+</style>
+
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee DailyMind</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+  .then(r => { if(!r.ok) throw new Error('nav.html yüklenemedi'); return r.text(); })
+  .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+  .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Sağ Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+  .then(r => { if(!r.ok) throw new Error('toc.html yüklenemedi'); return r.text(); })
+  .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+  .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h3><strong>Duygusal Farkındalık – İçsel Duyguların Farkına Var</strong></h3>
+
+<p>Duygusal farkındalık, kendi duygu ve hislerinizi yargılamadan gözlemleyebilme ve yönetebilme yeteneğinizdir. Bu yetenek, zihinsel esnekliği ve günlük yaşamda farkındalığı artırır.</p>
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uZIbcUbP1rI?rel=0" allowfullscreen></iframe>
+</div>
+
+<h3>Programın Amaçları</h3>
+<ul>
+  <li>Duygularınızı tanıyıp kabul etmek</li>
+  <li>Reaktif tepkiler yerine bilinçli seçimler yapmak</li>
+  <li>Kaygı ve stresi azaltmak</li>
+  <li>Öz-şefkat ve empatiyi geliştirmek</li>
+</ul>
+
+<h3>Günlük Pratikler</h3>
+<ul>
+  <li><strong>Nefes Egzersizleri:</strong> 1-2 dakikalık farkındalık nefesleri</li>
+  <li><strong>Etiketleme:</strong> “Şu anda ne hissediyorum?” sorusunu yanıtlamak</li>
+  <li><strong>Duygu Günlüğü:</strong> Günlük duygu notları tutmak</li>
+</ul>
+
+<hr>
+
+<div id="kategoriler-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.html')
+  .then(r => { if(!r.ok) throw new Error('kategoriler.html yüklenemedi'); return r.text(); })
+  .then(html => document.getElementById('kategoriler-placeholder').innerHTML = html)
+  .catch(e => console.error(e));
+</script>
+
+<div id="calendar-container" class="mt-4">
+  <div id="calendar"></div>
+</div>
+
+<style>
+#calendar-container { max-width: 100%; overflow: hidden; }
+.fc { font-size: 0.85rem; }
+.fc-event { cursor: pointer; white-space: normal; }
+.fc-event-title { font-weight: 600; }
+.fc-daygrid-event-dot { display: none; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://raw.githubusercontent.com/bandanee/DailyMind/main/calendar.json'))
+    .then(res => res.json())
+    .then(data => {
+      const videoEvents = JSON.parse(data.contents);
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'tr',
+        height: 'auto',
+        fixedWeekCount: false,
+        firstDay: 1,
+        headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
+        events: videoEvents,
+        eventClick: function(info) {
+          info.jsEvent.preventDefault();
+          const desc = info.event.extendedProps.description || '';
+          const modalHtml = `
+            <div class="modal fade" id="eventModal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">${info.event.title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>${desc}</p>
+                    <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="${info.event.url}" target="_blank" class="btn btn-danger">YouTube’da Aç</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+          document.body.insertAdjacentHTML('beforeend', modalHtml);
+          const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+          modal.show();
+          document.getElementById('eventModal').addEventListener('hidden.bs.modal', () => {
+            document.getElementById('eventModal').remove();
+          });
+        }
+      });
+      calendar.render();
+    })
+    .catch(err => console.error('Hata:', err));
+});
+</script>
+
+</main>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+  .then(r => { if(!r.ok) throw new Error('footer.html yüklenemedi'); return r.text(); })
+  .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+  .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
 
