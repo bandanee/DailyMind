@@ -1,1 +1,114 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DailyMind – Kişisel Gelişim ve Toplumsal Fayda İçin Yenilikçi App Fikirleri</title>
+<meta name="description" content="Kişisel gelişim, toplumsal fayda ve etik değerlere odaklanan DailyMind app fikirleri. İzleyicinin dikkat, odaklanma ve planlama sorunlarını çözmek için bilimsel temelli çözümler.">
+<meta name="keywords" content="kişisel gelişim, mobil uygulama fikirleri, toplumsal fayda, odaklanma, planlama, mindfulness, düşünce yönetimi, yaratıcı uygulamalar">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/yeni-fikir/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="DailyMind – Kişisel Gelişim ve Toplumsal Fayda İçin Yenilikçi App Fikirleri">
+<meta property="og:description" content="Kişisel gelişim, toplumsal fayda ve etik değerlere odaklanan DailyMind app fikirleri. İzleyicinin dikkat, odaklanma ve planlama sorunlarını çözmek için bilimsel temelli çözümler.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/yeni-fikir/">
+<meta property="og:image" content="https://bandanee.github.io/DailyMind/yeni-fikir/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DailyMind – Kişisel Gelişim ve Toplumsal Fayda İçin Yenilikçi App Fikirleri">
+<meta name="twitter:description" content="Kişisel gelişim, toplumsal fayda ve etik değerlere odaklanan DailyMind app fikirleri. İzleyicinin dikkat, odaklanma ve planlama sorunlarını çözmek için bilimsel temelli çözümler.">
+<meta name="twitter:image" content="https://bandanee.github.io/DailyMind/yeni-fikir/">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+  .offcanvas {
+  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+}
+</style>
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h3><strong>1. Giriş – Neden Bu Fikirler?</strong></h3><p>DailyMind olarak amacımız <strong>kişisel gelişimi, toplumsal faydayı ve etik değerleri bir araya getiren mobil uygulamalar üretmek</strong>. İzleyicilerimizin en büyük sorunları:</p><ul><li>Takip ve planlama güçlükleri</li><li>Odaklanma ve dikkat dağınıklığı</li><li>Not alma ve bilgiyi organize etme</li></ul><p>Bu sorunları çözmek için <strong>bilimsel dayanaklı ve uygulanabilir uygulama fikirleri geliştirdik</strong>. Her app, <strong>kişisel gelişim, toplumsal fayda ve etik değerlerle uyumlu</strong> olarak tasarlanmıştır.</p><p><br></p><h3><strong>2. DailyMind App Fikirleri ve Amaçları</strong></h3><p>Aşağıdaki uygulamalar, izleyiciye <strong>günlük yaşamda faydalı ve şaşırtıcı çözümler sunmak</strong> için tasarlandı. Her fikir, <strong>bilimsel referanslarla desteklenmiştir</strong>:</p><h4><strong>2.1 Günlük Görev Takip App</strong></h4><ul><li><strong>Amaç:</strong> Günlük hedefleri takip etmek ve odaklanmayı artırmak</li><li><strong>Kişisel Gelişim:</strong> Sorumluluk ve disiplin kazandırır</li><li><strong>Toplumsal Fayda:</strong> Daha düzenli bireyler grup çalışmalarında etkin olur</li><li><strong>Etik:</strong> Kendi hedeflerini dürüstçe takip etme alışkanlığı kazandırır</li><li><strong>Bilimsel Dayanak:</strong> Locke &amp; Latham, 2002 – Hedef belirleme prefrontal korteksi aktive eder ve başarı hissini artırır</li></ul><h4><strong>2.2 Mikro Alışkanlık App</strong></h4><ul><li><strong>Amaç:</strong> Küçük, uygulanabilir alışkanlıklar oluşturmak</li><li><strong>Kişisel Gelişim:</strong> Davranış değişikliğini kalıcı hale getirir</li><li><strong>Toplumsal Fayda:</strong> Sağlıklı alışkanlıklar toplumsal verimliliği artırır</li><li><strong>Etik:</strong> Kendi davranışını geliştirmeye odaklanır</li><li><strong>Bilimsel Dayanak:</strong> Duhigg, 2012 – Alışkanlık döngüsü davranış değişimini kalıcı yapar</li></ul><h4><strong>2.3 Pomodoro &amp; Odak App</strong></h4><ul><li><strong>Amaç:</strong> Dikkati artırmak ve verimli çalışmayı desteklemek</li><li><strong>Kişisel Gelişim:</strong> Odaklanma ve zaman yönetimi gelişir</li><li><strong>Toplumsal Fayda:</strong> Daha verimli bireyler çevrelerine olumlu katkı sağlar</li><li><strong>Etik:</strong> Zamanını verimli ve sorumlu kullanmayı öğretir</li><li><strong>Bilimsel Dayanak:</strong> Cirillo, 2006; Rosen et al., 2013 – Kısa odak süreleri hafızayı optimize eder</li></ul><h4><strong>2.4 Duygu Günlüğü App</strong></h4><ul><li><strong>Amaç:</strong> Duyguları fark edip yönetmek</li><li><strong>Kişisel Gelişim:</strong> Stres yönetimi ve öz farkındalık</li><li><strong>Toplumsal Fayda:</strong> Empati ve sosyal uyumu artırır</li><li><strong>Etik:</strong> Duyguları bastırmadan gözlemlemeyi öğretir</li><li><strong>Bilimsel Dayanak:</strong> Goleman, 1995 – Duygusal farkındalık stres hormonlarını azaltır</li></ul><h4><strong>2.5 Mindfulness &amp; Nefes App</strong></h4><ul><li><strong>Amaç:</strong> Günde 1–2 dakikalık mindfulness ile anda kalmak</li><li><strong>Kişisel Gelişim:</strong> Dikkat ve farkındalık artar</li><li><strong>Toplumsal Fayda:</strong> Sakin bireyler çevreye olumlu etki yapar</li><li><strong>Etik:</strong> Dürtüsel davranışları azaltır</li><li><strong>Bilimsel Dayanak:</strong> Kabat-Zinn, 1990 – Nefes egzersizleri sinir sistemini düzenler</li></ul><h3><strong>3. Uygulamalar ile Toplumsal ve Etik Fayda</strong></h3><p>Her DailyMind app’i sadece kişisel fayda sağlamakla kalmaz, <strong>toplumsal ve etik değerleri güçlendirir</strong>:</p><ul><li>Paylaşım ve sosyal öğrenmeyi teşvik eder</li><li>Empati, sabır ve adalet gibi değerleri geliştirmeyi hedefler</li><li>Bilimsel temelli çözüm ve geri bildirim mekanizmaları sunar</li></ul><h3><strong>4. Bilimsel Temel ve Doğruluk</strong></h3><p>Tüm uygulama fikirleri <strong>akademik ve bilimsel referanslarla desteklenmiştir</strong>. Örneğin:</p><ul><li><strong>Dikkat ve odaklanma:</strong> Pomodoro ve mindfulness teknikleri ile kanıtlanmıştır</li><li><strong>Duygusal farkındalık:</strong> Goleman’ın araştırmaları ile desteklenmiştir</li><li><strong>Alışkanlık geliştirme:</strong> Duhigg’in alışkanlık döngüsü prensiplerine dayanır</li><li><strong>Etik ve karar verme:</strong> Rest, 1986 ve Bandura, 1977 çalışmalarına uygun şekilde tasarlanmıştır</li></ul><h3><strong>5. Sonuç – İzleyiciye Çağrı</strong></h3><p>DailyMind olarak amacımız, <strong>teknolojiyi kişisel gelişim ve toplumsal fayda için kullanmak</strong>.</p><ul><li>İzleyicilerimiz günlük hayatlarında daha verimli, odaklanmış ve etik bireyler olabilir</li><li>Biz bu yolculukta <strong>izleyiciye rehberlik eden, bilimsel temelli ve pratik uygulamalar</strong> sunuyoruz</li><li>Her app, kullanıcıya hem <strong>“keşke bu da olsaydı” hissi</strong> hem de <strong>gerçek fayda</strong> sağlar</li></ul><p><br></p>
+</main>
+</div>
+
+
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
