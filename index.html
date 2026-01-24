@@ -95,7 +95,171 @@ fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
 </main>
 </div>
 
+<!-- ===================== TAKVİM BÖLÜMÜ ===================== -->
+<h3 class="mt-5"><strong>📆 İçerik Takvimi</strong></h3>
+<p class="text-muted">YouTube içeriklerinin planlı ve gerçekleşen takvim görünümü</p>
 
+<div class="calendar-wrapper my-4">
+  <div class="calendar" id="calendar"></div>
+</div>
+
+<style>
+.calendar-wrapper {
+  overflow-x:auto;
+}
+
+.calendar {
+  display:grid;
+  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  gap:10px;
+}
+
+.calendar .day-name {
+  font-weight:600;
+  text-align:center;
+  color:#6c757d;
+}
+
+.calendar .day {
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  padding:8px;
+  min-height:120px;
+  background:#f8f9fa;
+  position:relative;
+}
+
+.calendar .today {
+  border:2px solid #198754;
+  background:#e9f7ef;
+}
+
+.calendar .has-video {
+  background:#fff;
+}
+
+.calendar .past {
+  opacity:0.65;
+}
+
+.calendar .date {
+  font-size:13px;
+  font-weight:600;
+}
+
+.calendar .video {
+  font-size:12px;
+  margin-top:6px;
+}
+
+.calendar .video a {
+  text-decoration:none;
+  font-weight:600;
+}
+
+.badge-calendar {
+  position:absolute;
+  top:6px;
+  right:6px;
+  font-size:10px;
+}
+</style>
+
+<script>
+/* ================= JSON VIDEO DATA ================= */
+const calendarVideos = [
+  {
+    date: "2026-01-09",
+    time: "20:00",
+    title: "Duyguları Anlamayı Öğrenmek",
+    description: "Bilimsel duygusal farkındalık eğitimi",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_1"
+  },
+  {
+    date: "2026-01-10",
+    time: "20:00",
+    title: "Mindfulness ve Farkındalık Teknikleri",
+    description: "Meditasyon, nefes, body scan",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_2"
+  },
+  {
+    date: "2026-01-12",
+    time: "20:00",
+    title: "Thought Defusion – ACT",
+    description: "Düşünceyle zihinsel mesafe",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_3"
+  },
+  {
+    date: "2026-01-17",
+    time: "20:00",
+    title: "Düşünceyle Arana Mesafe Koy – 60 Gün",
+    description: "ACT Thought Defusion Programı",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_4"
+  }
+];
+
+/* ================= CALENDAR LOGIC ================= */
+const calendarEl = document.getElementById("calendar");
+const year = 2026;
+const month = 0; // Ocak
+const today = new Date();
+
+/* Gün başlıkları */
+["Pzt","Sal","Çar","Per","Cum","Cts","Paz"].forEach(d=>{
+  const div=document.createElement("div");
+  div.className="day-name";
+  div.innerText=d;
+  calendarEl.appendChild(div);
+});
+
+/* Ay ayarları */
+const firstDay = new Date(year, month, 1).getDay() || 7;
+const daysInMonth = new Date(year, month+1, 0).getDate();
+
+/* Boşluklar */
+for(let i=1;i<firstDay;i++){
+  calendarEl.appendChild(document.createElement("div"));
+}
+
+/* Günler */
+for(let d=1; d<=daysInMonth; d++){
+  const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+  const dateObj = new Date(dateStr);
+
+  const dayDiv=document.createElement("div");
+  dayDiv.className="day";
+
+  if(dateObj.toDateString()===today.toDateString()){
+    dayDiv.classList.add("today");
+  }
+  if(dateObj < today){
+    dayDiv.classList.add("past");
+  }
+
+  dayDiv.innerHTML = `<div class="date">${d}</div>`;
+
+  const video = calendarVideos.find(v=>v.date===dateStr);
+  if(video){
+    dayDiv.classList.add("has-video");
+
+    const badge = dateObj < today
+      ? `<span class="badge bg-success badge-calendar">Yüklendi</span>`
+      : `<span class="badge bg-warning text-dark badge-calendar">Yaklaşıyor</span>`;
+
+    dayDiv.innerHTML += `
+      ${badge}
+      <div class="video">
+        ⏰ ${video.time}<br>
+        <a href="${video.url}" target="_blank">${video.title}</a>
+        <div class="text-muted">${video.description}</div>
+      </div>
+    `;
+  }
+
+  calendarEl.appendChild(dayDiv);
+}
+</script>
+<!-- ===================== /TAKVİM ===================== -->
 
 <div id="footer-placeholder"></div>
 <script>
@@ -111,50 +275,6 @@ fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-// Başlangıç tarihi
-const startDate = new Date(2026, 0, 23); // Ocak = 0
-const today = new Date(); // Bugünün tarihi
-const monthNames = ["ocak","subat","mart","nisan","mayis","haziran","temmuz","agustos","eylul","ekim","kasim","aralik"];
-
-// Video container oluştur
-const videoContainer = document.createElement('div');
-videoContainer.id = 'video-list';
-videoContainer.className = 'my-4';
-
-const videoHeader = document.createElement('h3');
-videoHeader.innerHTML = "<strong>Tüm Videolar</strong>";
-videoContainer.appendChild(videoHeader);
-
-const ul = document.createElement('ul');
-ul.className = 'list-group list-group-flush mt-2';
-
-let videoCounter = 2; // Video numarasını 2’den başlatıyoruz, 23 Ocak 2026 Video 2
-
-for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-  const day = d.getDate();
-  const month = monthNames[d.getMonth()];
-  const year = d.getFullYear();
-
-  // URL ve başlık otomatik
-  const videoNumber = videoCounter;
-  const videoTitle = `${day} ${month} ${year} – Video ${videoNumber}`;
-
-  const videoURL = `https://bandanee.github.io/DailyMind/${month}/${day}-${month}-${year}-video${videoNumber}/`;
-
-  const li = document.createElement('li');
-  li.className = 'list-group-item';
-  li.innerHTML = `<a href="${videoURL}" target="_blank" rel="noopener noreferrer">${videoTitle}</a>`;
-  ul.appendChild(li);
-
-  videoCounter++;
-}
-
-// Container içine ekle
-videoContainer.appendChild(ul);
-
-// Main içerik altına ekle
-document.querySelector('main').appendChild(videoContainer);
-</script>
+  
 </body>
 </html>
