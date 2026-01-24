@@ -168,9 +168,80 @@ bilişsel esneklik ve dikkat çalışmalarıdır.
     .catch(e => console.error(e));
 </script>
 
+<div id="calendar-container" class="mt-4">
+  <div id="calendar"></div>
+</div>
 
-<div id="calendar-container" class="mt-4"> <div id="calendar"></div> </div> <style> #calendar-container { max-width: 100%; overflow: hidden; } .fc { font-size: 0.85rem; } .fc-event { cursor: pointer; white-space: normal; } .fc-event-title { font-weight: 600; } .fc-daygrid-event-dot { display: none; } </style> <script> document.addEventListener('DOMContentLoaded', function () { /* ================= JSON DATA ================= */ const videoEvents = [ { title: "60 Günlük Kişisel Gelişim Sistemi", start: "2026-01-17T20:00:00", url: "https://youtube.com/shorts/YV722w6yR2A", extendedProps: { description: "Thought Defusion, Mindfulness, Duygusal Farkındalık, ACT temelli çok boyutlu kişisel gelişim sistemi." } }, { title: "Düşüncelerimle Mesafe Koyuyorum – ACT", start: "2026-01-23T12:00:00", url: "https://youtube.com/shorts/bm5gT0lLA1s", extendedProps: { description: "ACT temelli Thought Defusion. Akademik referanslar: Hayes et al., 1999; Hayes et al., 2006; Zettle, 2007." } }, { title: "Duygularını Tanıyor musun? | Bilimsel Kısa Video ile Duygusal Farkındalık ", start: "2026-01-23T18:00:00", url: "https://youtube.com/shorts/hhVi1FQsZAw", extendedProps: { description: "Duygular hayatımızı yönlendirir, ama çoğu zaman onları fark etmeyiz. " } }, { title: "Nefesle Farkındalık Başlangıcı | 1 Dakikalık Mindfulness Egzersizi", start: "2026-01-23T21:00:00", url: "https://youtube.com/shorts/LSsW7JOMxuk", extendedProps: { description: "Nefes, farkındalık ve zihinsel sakinleşmenin temelidir. " } }, { title: "Zihnindeki Sesi Susturma | Düşünce mi, Gerçek mi? ", start: "2026-01-24T12:00:00", url: "https://youtube.com/shorts/sIXaluT8pJI", extendedProps: { description: "Zihninde konuşan her düşünce gerçek olmak zorunda değil." } } ]; /* ================= CALENDAR INIT ================= */ const calendarEl = document.getElementById('calendar'); const calendar = new FullCalendar.Calendar(calendarEl, { initialView: 'dayGridMonth', locale: 'tr', height: 'auto', fixedWeekCount: false, firstDay: 1, headerToolbar: { left: 'prev,next today', center: 'title', right: '' }, events: videoEvents, eventClick: function(info) { info.jsEvent.preventDefault(); const desc = info.event.extendedProps.description || ''; const modalHtml = <div class="modal fade" id="eventModal" tabindex="-1"> <div class="modal-dialog modal-dialog-centered modal-lg"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title">${info.event.title}</h5> <button type="button" class="btn-close" data-bs-dismiss="modal"></button> </div> <div class="modal-body"> <p>${desc}</p> <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}</p> </div> <div class="modal-footer"> <a href="${info.event.url}" target="_blank" class="btn btn-danger"> YouTube’da Aç </a> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Kapat </button> </div> </div> </div> </div>; document.body.insertAdjacentHTML('beforeend', modalHtml); const modal = new bootstrap.Modal(document.getElementById('eventModal')); modal.show(); document.getElementById('eventModal') .addEventListener('hidden.bs.modal', () => { document.getElementById('eventModal').remove(); }); } }); calendar.render(); }); </script>
-</main>
+<style>
+#calendar-container { max-width: 100%; overflow: hidden; }
+.fc { font-size: 0.85rem; }
+.fc-event { cursor: pointer; white-space: normal; }
+.fc-event-title { font-weight: 600; }
+.fc-daygrid-event-dot { display: none; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ================= FETCH JSON DATA FROM GITHUB ================= */
+  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://raw.githubusercontent.com/bandanee/DailyMind/main/calendar.json'))
+    .then(res => res.json())
+    .then(data => {
+
+      const videoEvents = JSON.parse(data.contents); // JSON string parse edildi
+
+      /* ================= CALENDAR INIT ================= */
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'tr',
+        height: 'auto',
+        fixedWeekCount: false,
+        firstDay: 1,
+        headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
+        events: videoEvents,
+        eventClick: function(info) {
+          info.jsEvent.preventDefault();
+
+          const desc = info.event.extendedProps.description || '';
+
+          const modalHtml = `
+            <div class="modal fade" id="eventModal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">${info.event.title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>${desc}</p>
+                    <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="${info.event.url}" target="_blank" class="btn btn-danger">YouTube’da Aç</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+
+          document.body.insertAdjacentHTML('beforeend', modalHtml);
+          const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+          modal.show();
+
+          document.getElementById('eventModal')
+            .addEventListener('hidden.bs.modal', () => {
+              document.getElementById('eventModal').remove();
+            });
+        }
+      });
+
+      calendar.render();
+
+    })
+    .catch(err => console.error('Hata:', err));
+});
+</script></main>
 </div>
 
  
@@ -189,47 +260,6 @@ bilişsel esneklik ve dikkat çalışmalarıdır.
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-// Başlangıç tarihi
-const startDate = new Date(2026, 0, 23); // Ocak = 0
-const today = new Date(); // Bugünün tarihi
-const monthNames = ["ocak","subat","mart","nisan","mayis","haziran","temmuz","agustos","eylul","ekim","kasim","aralik"];
 
-// Video container oluştur
-const videoContainer = document.createElement('div');
-videoContainer.id = 'video-list';
-videoContainer.className = 'my-4';
-
-const videoHeader = document.createElement('h3');
-videoHeader.innerHTML = "<strong>Tüm Videolar</strong>";
-videoContainer.appendChild(videoHeader);
-
-const ul = document.createElement('ul');
-ul.className = 'list-group list-group-flush mt-2';
-
-let videoCounter = 2; // Video numarasını 2’den başlatıyoruz, 23 Ocak 2026 Video 2
-
-for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-  const day = d.getDate();
-  const month = monthNames[d.getMonth()];
-  const year = d.getFullYear();
-
-  // URL ve başlık otomatik
-  const videoNumber = videoCounter;
-  const videoTitle = `${day} ${month} ${year} – Video ${videoNumber}`;
-
-  const videoURL = `https://bandanee.github.io/DailyMind/${month}/${day}-${month}-${year}-video${videoNumber}/`;
-
-  const li = document.createElement('li');
-  li.className = 'list-group-item';
-  li.innerHTML = `<a href="${videoURL}" target="_blank" rel="noopener noreferrer">${videoTitle}</a>`;
-  ul.appendChild(li);
-
-  videoCounter++;
-}
-
-
-document.querySelector('main').appendChild(videoContainer);
-</script>
 </body>
 </html>
