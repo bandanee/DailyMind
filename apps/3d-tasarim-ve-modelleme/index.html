@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>DailyMind – 3D Tasarım ve Modelleme Uygulamaları</title>
+<meta name="description" content="DailyMind – Web tabanlı 3D tasarım ve modelleme uygulamaları: tarayıcı üzerinden çalışan modeller, öğrenme araçları ve 3D tasarım uygulamalarını keşfedin.">
+<meta name="keywords" content="3d tasarım, web 3d modelleme, 3d uygulamalar, WebGL, 3D araçlar, tasarım aracı, üç boyutlu modelleme">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/apps/3d-tasarim-ve-modelleme/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="DailyMind – 3D Tasarım ve Modelleme Uygulamaları">
+<meta property="og:description" content="Web üzerinden çalışan 3D tasarım ve modelleme araçlarını öğrenin ve deneyimleyin.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/apps/3d-tasarim-ve-modelleme/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DailyMind – 3D Tasarım ve Modelleme Uygulamaları">
+<meta name="twitter:description" content="Web üzerinden çalışan 3D tasarım ve modelleme araçlarını öğrenin ve deneyimleyin.">
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+<style>
+body { font-family:'Montserrat',sans-serif; padding-top:56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position:fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position:fixed; top:10px; right:10px; z-index:1080;}
+.offcanvas { overflow:auto;}
+</style>
+
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft">&#9776;</button>
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee DailyMind</a>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start" id="offcanvasLeft">
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+      .catch(e => console.error(e));
+  </script>
+</div>
+
+<div class="offcanvas offcanvas-end" id="offcanvasRight">
+  <div id="toc-placeholder"></div>
+  <script>
+    fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+      .catch(e => console.error(e));
+  </script>
+</div>
+
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+
+<h3><strong>Web Tabanlı 3D Tasarım & Modelleme Uygulamaları</strong></h3>
+
+<p>Web tabanlı 3D tasarım araçları, tarayıcı üzerinden çalışan ve 3 boyutlu nesnelerin modellenmesini sağlayan yararlı uygulamalardır. Örneğin <strong>Tinkercad</strong> gibi araçlar, tarayıcıda çalışan ve 3D modellemeyi kolaylaştıran çevrimiçi bir platformdur. :contentReference[oaicite:1]{index=1}</p>
+
+<p>Bunun yanında <strong>Spline</strong> gibi modern web uygulamaları, interaktif ve gerçek zamanlı 3D deneyimler oluşturmayı destekler; bu tür araçlar tasarım, animasyon ve web entegrasyonu için geniş olanaklar sunar. :contentReference[oaicite:2]{index=2}</p>
+
+<p>Ayrıca <strong>Sketchfab</strong>, 3D modelleri tarayıcıda görüntülemek ve paylaşmak için popüler bir platformdur ve WebGL teknolojisi üzerine kuruludur. :contentReference[oaicite:3]{index=3}</p>
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uZIbcUbP1rI?rel=0" allowfullscreen></iframe>
+</div>
+
+<h4>Ne İşe Yarar?</h4>
+<ul>
+  <li><strong>Hızlı prototipleme:</strong> Tasarımlarınızı çevrimiçi olarak hızlıca oluşturmanızı sağlar.</li>
+  <li><strong>Eğitim:</strong> 3D modelleme öğrenmek isteyenler için basit ve erişilebilir bir başlangıç sunar.</li>
+  <li><strong>Paylaşım:</strong> Modelleri doğrudan web üzerinde görüntüleyip paylaşabilirsiniz.</li>
+</ul>
+
+<h4>Başlangıç Araçları</h4>
+<ul>
+  <li><strong>Tinkercad:</strong> Ücretsiz tarayıcı tabanlı 3D modelleme aracıdır, öğrenmeye yeni başlayanlar için idealdir. :contentReference[oaicite:4]{index=4}</li>
+  <li><strong>Spline:</strong> Web’de interaktif 3D sahneler oluşturmayı sağlayan güçlü bir tasarım platformudur. :contentReference[oaicite:5]{index=5}</li>
+  <li><strong>Sketchfab:</strong> 3D modelleri tarayıcıda göstermek ve keşfetmek için kullanılan bir platformdur. :contentReference[oaicite:6]{index=6}</li>
+</ul>
+
+<hr>
+
+<div id="kategoriler-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('kategoriler-placeholder').innerHTML = html)
+  .catch(e => console.error(e));
+</script>
+
+<div id="calendar-container" class="mt-4"><div id="calendar"></div></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://raw.githubusercontent.com/bandanee/DailyMind/main/calendar.json'))
+    .then(res => res.json())
+    .then(data => {
+      const videoEvents = JSON.parse(data.contents);
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView:'dayGridMonth',
+        locale:'tr',
+        height:'auto',
+        fixedWeekCount:false,
+        firstDay:1,
+        headerToolbar: { left:'prev,next today', center:'title', right:'' },
+        events:videoEvents,
+        eventClick:function(info) {
+          info.jsEvent.preventDefault();
+          const desc = info.event.extendedProps.description||'';
+          const modalHtml = `
+            <div class="modal fade" id="eventModal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">${info.event.title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body"><p>${desc}</p>
+                    <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="${info.event.url}" target="_blank" class="btn btn-danger">YouTube’da Aç</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+          document.body.insertAdjacentHTML('beforeend', modalHtml);
+          const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+          modal.show();
+          document.getElementById('eventModal').addEventListener('hidden.bs.modal', ()=> document.getElementById('eventModal').remove());
+        }
+      });
+      calendar.render();
+    }).catch(err => console.error(err));
+});
+</script>
+
+</main></div>
+
+<div id="footer-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+  .then(r=>r.text())
+  .then(html=>document.getElementById('footer-placeholder').innerHTML=html)
+  .catch(e=>console.error(e));
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
