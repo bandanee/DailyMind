@@ -1,159 +1,167 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Duygusal Farkındalık | DailyMind – Bilimsel Mindfulness ve Duygu Düzenleme</title>
 
-<meta name="description" content="DailyMind Duygusal Farkındalık modülü, duyguları tanıma, adlandırma ve düzenleme becerilerini geliştirmek için bilimsel temelli mindfulness ve bilişsel psikoloji yaklaşımlarını sunar. Kısa videolar ve günlük uygulamalarla duygusal farkındalığı güçlendirin.">
+<title>Duygusal Farkındalık | DailyMind – 60 Günlük Bilimsel Kişisel Gelişim</title>
 
-<meta name="keywords" content="duygusal farkındalık, duygu düzenleme, mindfulness, bilişsel psikoloji, psikolojik farkındalık, duyguları tanıma, duygu yönetimi, mental sağlık, kişisel gelişim, bilimsel mindfulness, günlük farkındalık egzersizleri">
+<meta name="description" content="Duygusal farkındalık; duyguları bastırmadan fark etmeyi, bedensel sinyalleri okumayı ve otomatik tepkiler yerine bilinçli seçimler yapmayı öğretir. DailyMind duygusal farkındalık modülü bilimsel ve uygulanabilir mini egzersizler sunar.">
+
+<meta name="keywords" content="duygusal farkındalık, emotional awareness, mindfulness, duygu düzenleme, psikoloji, ACT, MBSR, kişisel gelişim, zihinsel farkındalık">
 
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://bandanee.github.io/DailyMind/duygusal-farkindalik/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Duygusal Farkındalık | DailyMind">
-<meta property="og:description" content="Duygusal farkındalık; duyguları tanıma, ayırt etme ve düzenleme becerilerini geliştiren bilimsel temelli bir zihinsel farkındalık sürecidir. DailyMind, kısa ve uygulanabilir egzersizlerle bu becerileri güçlendirmeyi hedefler.">
+<meta property="og:description" content="Duygularını bastırmadan fark etmeyi ve yönetmeyi öğren. DailyMind Duygusal Farkındalık modülü bilimsel temellidir.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bandanee.github.io/DailyMind/duygusal-farkindalik/">
-<meta property="og:image" content="">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Duygusal Farkındalık | DailyMind">
+<meta name="twitter:description" content="Duygularla savaşmak yerine onları fark etmeyi öğren.">
 
-<meta name="twitter:description" content="Duygusal farkındalık, duyguları tanıma, adlandırma ve düzenleme becerilerini geliştiren bilimsel temelli bir süreçtir. DailyMind, kısa videolar ve günlük mindfulness uygulamalarıyla bu becerileri sistematik olarak güçlendirmeyi amaçlar.">
-<meta name="twitter:image" content="">
-
-<!-- FullCalendar -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-
+<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Google Fonts -->
+
+<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- FontAwesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-<!-- Özel CSS -->
+
 <style>
-body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
-main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
-footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
-footer a { color:#ffc107; text-decoration:none;}
-footer a:hover { text-decoration:underline;}
-#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
-#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
-  .offcanvas {
-  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+body {
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 56px;
+  background:#f5f5f5;
+}
+main {
+  max-width:900px;
+  margin:2rem auto;
+  padding:2rem;
+  background:#fff;
+  border-radius:6px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+blockquote {
+  border-left:4px solid #0d6efd;
+  padding-left:15px;
+  color:#555;
+  font-style:italic;
 }
 </style>
+
 <script>
 fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
   .then(r => r.text())
   .then(t => document.head.insertAdjacentHTML("beforeend", t))
-  .catch(e => console.error("ek_head yüklenemedi", e));
+  .catch(e => console.error("head.html yüklenemedi", e));
 </script>
+
 </head>
 <body>
 
-<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
-
-<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
-  </div>
-</nav>
-
-<!-- Sol Offcanvas -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<!-- Navbar -->
 <div id="navbar-placeholder"></div>
 <script>
-  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
-    .then(r => {
-      if (!r.ok) throw new Error('nav.html yüklenemedi');
-      return r.text();
-    })
-    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
-    .catch(e => console.error(e));
+fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+  .then(r => r.text())
+  .then(t => document.getElementById('navbar-placeholder').innerHTML = t)
+  .catch(e => console.error("nav.html yüklenemedi", e));
 </script>
-</div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-<div id="toc-placeholder"></div>
-<script>
-  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
-    .then(r => {
-      if (!r.ok) throw new Error('nav.html yüklenemedi');
-      return r.text();
-    })
-    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
-    .catch(e => console.error(e));
-</script>
-</div>
+<!-- Main Content -->
+<main>
 
-<!-- Main içerik -->
-<div class="container my-4">
-<main class="col-12 col-lg-9 mx-auto">
-<h3><strong>Duygusal Farkındalık – Duygularını Tanı, Tepkilerini Yönet</strong></h3>
+<h3><strong>Duygusal Farkındalık – Duygularını Bastırma, Tanı</strong></h3>
 
 <p>
-<strong>Duygusal farkındalık</strong>, bireyin kendi duygularını anlık olarak tanıyabilme,
-bedensel ve zihinsel sinyallerle ilişkilendirebilme ve bu duygulara otomatik tepkiler vermek
-yerine bilinçli seçimler yapabilme becerisidir.
-<strong>DailyMind Duygusal Farkındalık</strong> modülü,
-duyguları bastırmayı ya da değiştirmeyi değil,
-<strong>duygularla sağlıklı ve işlevsel bir ilişki kurmayı</strong> hedefler.
+<strong>Duygusal farkındalık</strong>, bireyin yaşadığı duyguları bastırmadan,
+etiketlemeden ve yargılamadan fark edebilme becerisidir.
+Bu beceri, psikolojik esnekliğin ve sağlıklı duygu düzenlemenin
+<strong>temel yapı taşlarından biri</strong> olarak kabul edilir.
 </p>
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uZIbcUbP1rI?rel=0" allowfullscreen></iframe>
-</div>
+
 <p>
-Modern psikolojiye göre duygular “kontrol edilmesi gereken sorunlar” değil,
-<strong>bilgi taşıyan içsel sinyallerdir</strong>.
-Bu program, bireyin öfke, kaygı, üzüntü, suçluluk, sevinç ve korku gibi temel duyguları
-ayırt edebilmesini; bu duyguların bedende nasıl ortaya çıktığını fark etmesini
-ve düşüncelerle duygular arasındaki otomatik bağları gözlemlemesini sağlar.
+DailyMind Duygusal Farkındalık modülü,
+duyguları “kontrol edilmesi gereken problemler” olarak değil,
+<strong>bedensel ve zihinsel sinyaller</strong> olarak ele alır.
+Amaç, otomatik tepkiler yerine bilinçli seçim alanı oluşturmaktır.
 </p>
 
 <blockquote>
-“Duygular bastırıldığında değil, fark edildiğinde düzenlenebilir hale gelir.”
+“Duyular bastırıldığında kaybolmaz;
+fark edilmediklerinde davranışları yönetirler.”
 <br>
-– Gross, J. J. (1998). <em>The emerging field of emotion regulation</em>
+– Gross, J. J. (1998)
 </blockquote>
 
-<h3><strong>Bu Modül Ne Kazandırır?</strong></h3>
+<hr>
+
+<h3><strong>Bu Modül Ne Öğretir?</strong></h3>
 
 <ul>
-  <li>Duyguları isimlendirme ve ayırt etme becerisi</li>
-  <li>Bedensel sinyaller ile duygular arasındaki ilişkiyi fark etme</li>
-  <li>Otomatik tepkiler yerine bilinçli davranış seçimi</li>
-  <li>Duygusal kaçınma ve bastırma döngüsünü fark etme</li>
-  <li>Stres ve kaygı anlarında duygusal regülasyon kapasitesi</li>
+  <li>Duygular ile düşünceler arasındaki farkı ayırt etmeyi</li>
+  <li>Bedensel duyumlar üzerinden duyguları tanımayı</li>
+  <li>Otomatik tepkiler yerine farkındalıkla durabilmeyi</li>
+  <li>Duyguları bastırmadan düzenleyebilmeyi</li>
 </ul>
 
-<h3><strong>Nasıl İlerler?</strong></h3>
+<hr>
+
+<h3><strong>Bilimsel Dayanaklar</strong></h3>
+
+<ul>
+  <li><strong>Emotion Regulation Theory</strong> – Gross (1998)</li>
+  <li><strong>Acceptance and Commitment Therapy (ACT)</strong> – Hayes et al. (1999)</li>
+  <li><strong>Mindfulness-Based Stress Reduction (MBSR)</strong> – Kabat-Zinn (1990)</li>
+</ul>
+
+<hr>
+
+<h3><strong>DailyMind İçindeki Yeri</strong></h3>
 
 <p>
-Duygusal farkındalık çalışmaları, günlük yaşamla entegre edilen
-<strong>1–2 dakikalık kısa videolar</strong> ve
-<strong>mikro farkındalık egzersizleri</strong> üzerinden ilerler.
-Her içerik, bilimsel literatüre dayalı olarak
-<strong>duyguyu tanıma → bedende fark etme → tepkiyi gözlemleme</strong>
-adımlarını takip eder.
+Duygusal farkındalık, DailyMind sisteminin ilk ve temel modüllerinden biridir.
+Bu beceri gelişmeden; thought defusion, kognitif yeniden çerçeveleme ve
+zihinsel dayanıklılık <strong>kalıcı hale gelmez</strong>.
 </p>
 
+<p>
+İçerikler kısa, tekrarlanabilir ve <strong>günlük hayata doğrudan uygulanabilir</strong> şekilde tasarlanmıştır.
+</p>
+
+<hr>
+
+<h3><strong>Diğer Modüller</strong></h3>
+<div id="kategoriler-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.html')
+  .then(r => r.text())
+  .then(t => document.getElementById('kategoriler-placeholder').innerHTML = t)
+  .catch(e => console.error("kategoriler.html yüklenemedi", e));
+</script>
+
+<hr>
+
+<h3><strong>İlgili Videolar</strong></h3>
+<div id="video-placeholder"></div>
+<script>
+fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/videos/duygusal-farkindalik.html')
+  .then(r => r.text())
+  .then(t => document.getElementById('video-placeholder').innerHTML = t)
+  .catch(e => console.error("videolar yüklenemedi", e));
+</script>
+
 <blockquote>
-<strong>Not:</strong> Bu modül bir “duyguları kontrol etme” programı değildir.
-Amaç, duyguların gelip geçici doğasını fark ederek
-<strong>onlarla daha esnek ve sağlıklı bir ilişki kurmaktır</strong>.
+<strong>Not:</strong> Bu modül “duyguları değiştirmeyi” değil,
+<strong>duygularla kurulan ilişkiyi dönüştürmeyi</strong> hedefler.
 </blockquote>
-<hr class="my-5">
+
+ 
+
+ 
 
 <h3><strong>📆 İçerik Takvimi</strong></h3>
 <p class="text-muted">
