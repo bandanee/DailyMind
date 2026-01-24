@@ -201,107 +201,74 @@ bilişsel esneklik ve dikkat çalışmalarıdır.
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ================= JSON DATA ================= */
-  const videoEvents = [
-    {
-      title: "60 Günlük Kişisel Gelişim Sistemi",
-      start: "2026-01-17T20:00:00",
-      url: "https://youtube.com/shorts/YV722w6yR2A",
-      extendedProps: {
-        description: "Thought Defusion, Mindfulness, Duygusal Farkındalık, ACT temelli çok boyutlu kişisel gelişim sistemi."
-      }
-    },
-    {
-      title: "Düşüncelerimle Mesafe Koyuyorum – ACT",
-      start: "2026-01-23T12:00:00",
-      url: "https://youtube.com/shorts/bm5gT0lLA1s",
-      extendedProps: {
-        description: "ACT temelli Thought Defusion. Akademik referanslar: Hayes et al., 1999; Hayes et al., 2006; Zettle, 2007."
-      }
-    },
-    {
-      title: "Duygularını Tanıyor musun? | Bilimsel Kısa Video ile Duygusal Farkındalık ",
-      start: "2026-01-23T18:00:00",
-      url: "https://youtube.com/shorts/hhVi1FQsZAw",
-      extendedProps: {
-        description: "Duygular hayatımızı yönlendirir, ama çoğu zaman onları fark etmeyiz. "
-      }
-    },
-    {
-      title: "Nefesle Farkındalık Başlangıcı | 1 Dakikalık Mindfulness Egzersizi",
-      start: "2026-01-23T21:00:00",
-      url: "https://youtube.com/shorts/LSsW7JOMxuk",
-      extendedProps: {
-        description: "Nefes, farkındalık ve zihinsel sakinleşmenin temelidir. "
-      }
-    },
-    {
-      title: "Zihnindeki Sesi Susturma | Düşünce mi, Gerçek mi? ",
-      start: "2026-01-24T12:00:00",
-      url: "https://youtube.com/shorts/sIXaluT8pJI",
-      extendedProps: {
-        description: "Zihninde konuşan her düşünce gerçek olmak zorunda değil."
-      }
-    }
-  ];
+  /* ================= FETCH JSON DATA ================= */
+  fetch('calendar.json') // <--- Burada JSON dosyanın yolunu yaz
+    .then(response => {
+      if (!response.ok) throw new Error('Veri çekilemedi');
+      return response.json();
+    })
+    .then(videoEvents => {
 
-  /* ================= CALENDAR INIT ================= */
-  const calendarEl = document.getElementById('calendar');
+      /* ================= CALENDAR INIT ================= */
+      const calendarEl = document.getElementById('calendar');
 
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    locale: 'tr',
-    height: 'auto',
-    fixedWeekCount: false,
-    firstDay: 1,
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: ''
-    },
-    events: videoEvents,
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'tr',
+        height: 'auto',
+        fixedWeekCount: false,
+        firstDay: 1,
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: ''
+        },
+        events: videoEvents, // JSON’dan çekilen veri
 
-    eventClick: function(info) {
-      info.jsEvent.preventDefault();
+        eventClick: function(info) {
+          info.jsEvent.preventDefault();
 
-      const desc = info.event.extendedProps.description || '';
+          const desc = info.event.extendedProps.description || '';
 
-      const modalHtml = `
-        <div class="modal fade" id="eventModal" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">${info.event.title}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          const modalHtml = `
+            <div class="modal fade" id="eventModal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">${info.event.title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>${desc}</p>
+                    <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="${info.event.url}" target="_blank" class="btn btn-danger">
+                      YouTube’da Aç
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Kapat
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="modal-body">
-                <p>${desc}</p>
-                <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}</p>
-              </div>
-              <div class="modal-footer">
-                <a href="${info.event.url}" target="_blank" class="btn btn-danger">
-                  YouTube’da Aç
-                </a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                  Kapat
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>`;
+            </div>`;
 
-      document.body.insertAdjacentHTML('beforeend', modalHtml);
-      const modal = new bootstrap.Modal(document.getElementById('eventModal'));
-      modal.show();
+          document.body.insertAdjacentHTML('beforeend', modalHtml);
+          const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+          modal.show();
 
-      document.getElementById('eventModal')
-        .addEventListener('hidden.bs.modal', () => {
-          document.getElementById('eventModal').remove();
-        });
-    }
-  });
+          document.getElementById('eventModal')
+            .addEventListener('hidden.bs.modal', () => {
+              document.getElementById('eventModal').remove();
+            });
+        }
+      });
 
-  calendar.render();
+      calendar.render();
+
+    })
+    .catch(error => console.error('Hata:', error));
 });
 </script>
 </main>
