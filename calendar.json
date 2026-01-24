@@ -1,0 +1,42 @@
+ [
+    {
+      title: "60 Günlük Kişisel Gelişim Sistemi",
+      start: "2026-01-17T20:00:00",
+      url: "https://youtube.com/shorts/YV722w6yR2A",
+      extendedProps: {
+        description: "Thought Defusion, Mindfulness, Duygusal Farkındalık, ACT temelli çok boyutlu kişisel gelişim sistemi."
+      }
+    },
+    {
+      title: "Düşüncelerimle Mesafe Koyuyorum – ACT",
+      start: "2026-01-23T12:00:00",
+      url: "https://youtube.com/shorts/bm5gT0lLA1s",
+      extendedProps: {
+        description: "ACT temelli Thought Defusion. Akademik referanslar: Hayes et al., 1999; Hayes et al., 2006; Zettle, 2007."
+      }
+    },
+    {
+      title: "Duygularını Tanıyor musun? | Bilimsel Kısa Video ile Duygusal Farkındalık ",
+      start: "2026-01-23T18:00:00",
+      url: "https://youtube.com/shorts/hhVi1FQsZAw",
+      extendedProps: {
+        description: "Duygular hayatımızı yönlendirir, ama çoğu zaman onları fark etmeyiz. "
+      }
+    },
+    {
+      title: "Nefesle Farkındalık Başlangıcı | 1 Dakikalık Mindfulness Egzersizi",
+      start: "2026-01-23T21:00:00",
+      url: "https://youtube.com/shorts/LSsW7JOMxuk",
+      extendedProps: {
+        description: "Nefes, farkındalık ve zihinsel sakinleşmenin temelidir. "
+      }
+    },
+    {
+      title: "Zihnindeki Sesi Susturma | Düşünce mi, Gerçek mi? ",
+      start: "2026-01-24T12:00:00",
+      url: "https://youtube.com/shorts/sIXaluT8pJI",
+      extendedProps: {
+        description: "Zihninde konuşan her düşünce gerçek olmak zorunda değil."
+      }
+    }
+  ]
