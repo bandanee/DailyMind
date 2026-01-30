@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duygusal Veri Laboratuvarı – Duyguları Tanıma ve Ölçme</title>
+<meta name="description" content="Duygularınızı gözlemleyin, otomatik tepkilerinizi fark edin ve kendi kişisel duygusal profilinizi oluşturun. Bu program motivasyon veya terapi amaçlı değildir; her gün kısa mikro uygulamalarla duygusal farkındalığınızı artırın, bedensel ve zihinsel sinyalleri ayırt edin, ölçülebilir veriler toplayın ve 60 gün sonunda tamamen size ait bir duygusal harita oluşturun.">
+<meta name="keywords" content="duygusal farkındalık,kişisel gelişim,duygu ölçümü,60 günlük program,zihinsel dayanıklılık,düşünce gözlemi,mikro uygulamalar,tetik-tepki gözlemi,bedensel sinyaller,otomatik tepkiler,duygusal profil,kendini tanıma,kişisel veri,gözlem programı,duygusal zeka,mindfulness,iç gözlem,kendi zihninin araştırmacısı,duygusal laboratuvar,duygu tanıma">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/arsiv/duygusal-veri-laboratuvari/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Duygusal Veri Laboratuvarı – Duyguları Tanıma ve Ölçme">
+<meta property="og:description" content="Duygularınızı gözlemleyin, otomatik tepkilerinizi fark edin ve kendi kişisel duygusal profilinizi oluşturun. Bu program motivasyon veya terapi amaçlı değildir; her gün kısa mikro uygulamalarla duygusal farkındalığınızı artırın, bedensel ve zihinsel sinyalleri ayırt edin, ölçülebilir veriler toplayın ve 60 gün sonunda tamamen size ait bir duygusal harita oluşturun.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/arsiv/duygusal-veri-laboratuvari/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Duygusal Veri Laboratuvarı – Duyguları Tanıma ve Ölçme">
+<meta name="twitter:description" content="Duygularınızı gözlemleyin, otomatik tepkilerinizi fark edin ve kendi kişisel duygusal profilinizi oluşturun. Bu program motivasyon veya terapi amaçlı değildir; her gün kısa mikro uygulamalarla duygusal farkındalığınızı artırın, bedensel ve zihinsel sinyalleri ayırt edin, ölçülebilir veriler toplayın ve 60 gün sonunda tamamen size ait bir duygusal harita oluşturun.">
+<meta name="twitter:image" content="">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+  .offcanvas {
+  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+}
+</style>
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h3><strong>1. Duygusal Veri Laboratuvarı Nedir?</strong></h3><ul><li>Bu program, <strong>duygularınızı gözlemleme ve ölçme üzerine</strong> yapılandırılmış bir laboratuvardır.</li><li>Her gün kısa mikro uygulamalarla, tetik-tepki döngülerinizi ve otomatik tepkilerinizi fark etmenizi sağlar (Gross, 2015).</li></ul><h3><strong>2. Duyguları Tanıma ve Ölçme</strong></h3><ul><li><strong>Bedensel ve zihinsel sinyaller:</strong> Her duygu, bedende ve zihinde özgün bir veri seti üretir.</li><li><strong>Mikro gözlemler:</strong> Öfke, kaygı, sevinç gibi duyguların yoğunluğu, süresi ve tetikleyicileri günlük olarak kaydedilir.</li><li>Bu veri, <strong>kişisel duygusal profil</strong> oluşturmak için kullanılır.</li></ul><h3><strong>3. Günlük Mikro Uygulamalar</strong></h3><ul><li>Kısa süreli egzersizler ile duygusal farkındalığınızı artırın.</li><li>Tetik-tepki gözlemi ve iç gözlem ile otomatik davranış kalıplarını fark edin.</li><li>Günlük kayıtlar, 60 gün sonunda size <strong>tamamen kişisel bir duygusal harita</strong> sunar.</li></ul><h3><strong>4. Akademik Temel ve Referanslar</strong></h3><ul><li><strong>Gross, J.J. (2015). Emotion Regulation: Current Status and Future Prospects.</strong></li><li><strong>Davidson, R.J., &amp; Begley, S. (2012). The Emotional Life of Your Brain.</strong></li><li>Nörobilim ve psikoloji araştırmaları, düzenli gözlemin duygusal zekâ ve farkındalığı artırdığını gösterir.</li></ul><h3><strong>5. Sonuç ve Kişisel Farkındalık</strong></h3><ul><li>Duygular artık belirsiz veya bastırılması gereken sinyaller değildir; ölçülebilir ve <strong>bilinçli şekilde yönetilebilir veriler</strong> haline gelir.</li><li>60 gün sonunda, kendi <strong>Duygusal Profil Haritanızı</strong> oluşturarak kişisel farkındalığınızı ve duygusal zekânızı somut olarak gözlemleyebilirsiniz.</li></ul><p><br></p>
+</main>
+</div>
+
+
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
