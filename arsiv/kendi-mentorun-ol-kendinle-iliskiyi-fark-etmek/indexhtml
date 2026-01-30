@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kendi Mentorun Ol – Kendinle İlişkiyi Fark Etmek | Bilimsel Kişisel Gelişim</title>
+<meta name="description" content="Kendinle kurduğun ilişkiyi fark etmek, sürdürülebilir kişisel gelişimin temelidir. Bu içerik, iç mentor kavramını psikoloji ve nörobilim temelli olarak açıklar.">
+<meta name="keywords" content="kendi mentorun ol, içsel rehberlik, öz farkındalık, kişisel gelişim, psikoloji, nörobilim, bilinçli yaşam, iç diyalog">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/arsiv/kendi-mentorun-ol-kendinle-iliskiyi-fark-etmek/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Kendi Mentorun Ol – Kendinle İlişkiyi Fark Etmek | Bilimsel Kişisel Gelişim">
+<meta property="og:description" content="Kendinle kurduğun ilişkiyi fark etmek, sürdürülebilir kişisel gelişimin temelidir. Bu içerik, iç mentor kavramını psikoloji ve nörobilim temelli olarak açıklar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/arsiv/kendi-mentorun-ol-kendinle-iliskiyi-fark-etmek/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kendi Mentorun Ol – Kendinle İlişkiyi Fark Etmek | Bilimsel Kişisel Gelişim">
+<meta name="twitter:description" content="Kendinle kurduğun ilişkiyi fark etmek, sürdürülebilir kişisel gelişimin temelidir. Bu içerik, iç mentor kavramını psikoloji ve nörobilim temelli olarak açıklar.">
+<meta name="twitter:image" content="">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+  .offcanvas {
+  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+}
+</style>
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h2>Kendinle Kurduğun İlişkiyi Görmek</h2><p>İnsan, hayatı boyunca en uzun ilişkiyi kendisiyle yaşar. Buna rağmen bu ilişkinin niteliği çoğu zaman sorgulanmaz. İç mentor kavramı, kişinin kendi iç sesini fark etmesini, düzenlemesini ve bilinçli bir rehberliğe dönüştürmesini ifade eder.</p><h2>İç Mentor Nedir?</h2><p>Psikolojide bu kavram; öz düzenleme (self-regulation), metabiliş (metacognition) ve öz şefkat (self-compassion) başlıkları altında incelenir. İç mentor, eleştiren değil; gözlemleyen, yönlendiren ve öğrenmeye açık bir iç sestir.</p><h2>Bilimsel Temeller</h2><p>Araştırmalar, bireyin iç diyaloğunu fark etmesinin stres düzeyini azalttığını ve karar kalitesini artırdığını göstermektedir. Özellikle prefrontal korteks ile limbik sistem arasındaki denge, bilinçli iç rehberlikle güçlenir.</p><h2>Kendinle İlişkiyi Fark Etmenin Aşamaları</h2><ol><li>İç konuşmayı yargılamadan fark etmek</li><li>Otomatik tepkileri ayırt etmek</li><li>Duygu–düşünce–davranış zincirini gözlemlemek</li><li>Bilinçli alternatifler üretmek</li></ol><h2>Kişisel Gelişim Bir Performans Değil, İlişkidir</h2><p>Kendinle kurduğun ilişki düzeldiğinde; motivasyon, disiplin ve dayanıklılık doğal bir yan ürün hâline gelir. İç mentor, seni zorlayan değil; seni anlayarak yönlendiren bir yapıdır.</p><h2>Akademik Referanslar</h2><ul><li>Baumeister, R. F., &amp; Vohs, K. D. (2007). <em>Self‐regulation, ego depletion, and motivation</em>. Social and Personality Psychology Compass.</li><li>Flavell, J. H. (1979). <em>Metacognition and cognitive monitoring</em>. American Psychologist.</li><li>Neff, K. D. (2003). <em>Self‐compassion: An alternative conceptualization of a healthy attitude toward oneself</em>. Self and Identity.</li></ul><p><br></p>
+</main>
+</div>
+
+
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
