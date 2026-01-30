@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DailyMind Arşiv - Dinamik DataTable</title>
+<title>DailyMind Arşiv - Dinamik DataTable + YouTube</title>
 <meta name="description" content="DailyMind arşiv klasörleri. Arama ve filtreleme ile tüm arşivleri görüntüleyin.">
-<meta name="keywords" content="DailyMind, Arşiv, Klasör, GitHub, JavaScript, HTML, Dinamik Liste">
+<meta name="keywords" content="DailyMind, Arşiv, Klasör, GitHub, JavaScript, HTML, Dinamik Liste, Video">
 <meta name="author" content="DailyMind">
 
 <!-- DataTables CSS -->
@@ -55,12 +55,33 @@
     text-decoration: underline;
   }
 
+  main {
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .youtube-container {
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .youtube-container iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border: none;
+    border-radius: 12px;
+  }
+
   @media (max-width: 600px) {
     body {
       padding: 10px;
     }
     header h1 {
       font-size: 1.5rem;
+    }
+    .youtube-container iframe {
+      height: 250px;
     }
   }
 </style>
@@ -70,7 +91,7 @@
 
 <header>
   <h1>📂 DailyMind Arşiv</h1>
-  <p>DataTables ile arama, filtreleme ve sıralama destekli modern liste</p>
+  <p>DataTables ile arama, filtreleme ve sıralama destekli modern liste + Video</p>
 </header>
 
 <main>
@@ -87,6 +108,16 @@
       <!-- Dinamik olarak JS ile doldurulacak -->
     </tbody>
   </table>
+
+  <div class="youtube-container">
+    <h2>📺 DailyMind Video Oynatma Listesi</h2>
+    <iframe 
+      src="https://www.youtube.com/embed/videoseries?list=PLINEf8JBXAooDTXWV0joxXJgGLJg36cPg" 
+      title="DailyMind Oynatma Listesi" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
 </main>
 
 <!-- jQuery ve DataTables JS -->
@@ -158,3 +189,4 @@ init();
 
 </body>
 </html>
+
