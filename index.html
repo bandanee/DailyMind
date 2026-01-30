@@ -257,54 +257,7 @@ async function init() {
 
 init();
 </script>
-<div id="calendar-container" class="mt-4"><div id="calendar"></div></div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://raw.githubusercontent.com/bandanee/DailyMind/main/calendar.json'))
-    .then(res => res.json())
-    .then(data => {
-      const videoEvents = JSON.parse(data.contents);
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView:'dayGridMonth',
-        locale:'tr',
-        height:'auto',
-        fixedWeekCount:false,
-        firstDay:1,
-        headerToolbar: { left:'prev,next today', center:'title', right:'' },
-        events:videoEvents,
-        eventClick:function(info) {
-          info.jsEvent.preventDefault();
-          const desc = info.event.extendedProps.description||'';
-          const modalHtml = `
-            <div class="modal fade" id="eventModal" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">${info.event.title}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body"><p>${desc}</p>
-                    <p><strong>⏰ Saat:</strong> ${info.event.start.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}</p>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="${info.event.url}" target="_blank" class="btn btn-danger">YouTube’da Aç</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                  </div>
-                </div>
-              </div>
-            </div>`;
-          document.body.insertAdjacentHTML('beforeend', modalHtml);
-          const modal = new bootstrap.Modal(document.getElementById('eventModal'));
-          modal.show();
-          document.getElementById('eventModal').addEventListener('hidden.bs.modal', ()=> document.getElementById('eventModal').remove());
-        }
-      });
-      calendar.render();
-    }).catch(err => console.error(err));
-});
-</script>
+ 
 
 </main></div>
 
