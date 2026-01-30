@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arşiv Listesi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+    }
+
+    li {
+      margin-bottom: 12px;
+    }
+
+    a {
+      display: block;
+      padding: 12px 16px;
+      background: #1e293b;
+      color: #38bdf8;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    a:hover {
+      background: #334155;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+<h1>📁 DailyMind Arşiv</h1>
+<ul id="list"></ul>
+
+<script>
+  const owner = "bandanee";
+  const repo  = "DailyMind";
+  const path  = "arsiv";
+
+  const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+  fetch(apiUrl)
+    .then(res => res.json())
+    .then(items => {
+      const list = document.getElementById("list");
+
+      items
+        .filter(item => item.type === "dir")
+        .forEach(dir => {
+          const li = document.createElement("li");
+          const a  = document.createElement("a");
+
+          a.href = `https://${owner}.github.io/${repo}/${path}/${dir.name}/index.html`;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.textContent = dir.name;
+
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("list").innerHTML =
+        "<li>Liste yüklenemedi.</li>";
+    });
+</script>
+
+</body>
+</html>
 
