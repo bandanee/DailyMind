@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine Live: Quiz & Quotes</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: #0e0e0e;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#quizContainer {
+    width: 96%;
+    max-width: 1600px;
+    background: rgba(20,20,20,0.95);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+#topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#categoryLabel {
+    background: #ff6f61;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 2vw;
+    text-align: center;
+}
+
+#dateClockContainer {
+    display: flex;
+    gap: 20px;
+    font-size: 2vw;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+#historyMarquee {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    font-size: 1.8vw;
+    font-weight: 700;
+    color: #ffa500;
+    margin: 15px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+#historyMarquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 240s linear infinite;
+}
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+#question {
+    font-size: 4vw;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 900;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    margin: 20px 0;
+}
+
+#timer {
+    font-size: 5vw;
+    color: #ffb400;
+    font-weight: 900;
+    margin: 20px 0;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.option {
+    background: #2a2a2a;
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 900;
+    font-size: 2vw;
+    color: #e0e0e0;
+    text-align: center;
+    min-width: 150px;
+    position: relative;
+}
+
+.option::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background: #ff6f61;
+    color: #fff;
+    font-weight: 900;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 1.2vw;
+}
+
+.option:hover {
+    transform: scale(1.05);
+    border-color: #ffb400;
+    background: #3b3b3b;
+}
+
+.option.correct {
+    background: linear-gradient(90deg, #00ff88, #00c28a);
+    border-color: #00ff88;
+    color: #fff;
+}
+
+.option.wrong {
+    background: linear-gradient(90deg, #ff4c4c, #c20000);
+    border-color: #ff4c4c;
+    color: #fff;
+}
+
+#quoteCarousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 30px 0;
+    width: 96%;
+    margin-bottom: 50px;
+}
+
+.quoteCard {
+    background: #2a2a2a;
+    border: 2px solid #555;
+    border-radius: 16px;
+    padding: 25px;
+    min-width: 350px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.6);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.5vw;
+    color: #ffffff;
+}
+
+#quoteCarousel::-webkit-scrollbar { height: 8px; }
+#quoteCarousel::-webkit-scrollbar-thumb { background: #888; }
+
+#scoreDisplay {
+    font-size: 2vw;
+    font-weight: 900;
+    margin: 15px 0;
+    color: #00ff88;
+}
+</style>
+</head>
+<body>
+<h1>https://bandanee.github.io/DailyMind/quiz/</h1>
+<div id="quizContainer">
+    <!-- Top Bar -->
+    <div id="topBar">
+        <div id="categoryLabel">Category</div>
+        <div id="dateClockContainer">
+            <div id="todayDate">00/00/0000</div>
+            <div id="clock">00:00:00</div>
+        </div>
+    </div> 
+
+    <div id="historyMarquee" style="display:none"><span id="historyList">Loading events...</span></div>
+    <div id="question">Loading question...</div>
+    <div id="timer" style="position:absolute;margin-top:-1px;">30</div>
+    <div id="options"></div>
+    <div id="scoreDisplay">Score: 0</div>
+</div>   
+
+<!-- Quotes Carousel -->
+<div id="quoteCarousel"></div>
+
+<script>
+// Clock
+function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    const month = String(now.getMonth()+1).padStart(2,'0');
+    const day = String(now.getDate()).padStart(2,'0');
+    const year = now.getFullYear();
+    document.getElementById('todayDate').textContent = `${month}/${day}/${year}`;
+    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Today in history
+async function loadHistory() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    try {
+        const res = await fetch(`https://history.muffinlabs.com/date/${month}/${day}`);
+        const data = await res.json();
+        const events = data.data.Events || [];
+        const marqueeText = events.slice(0, 10).map(ev => `${ev.year}: ${ev.text}`).join(' ⚡ ');
+        document.getElementById('historyList').textContent = marqueeText;
+    } catch {
+        document.getElementById('historyList').textContent = "Events could not be loaded.";
+    }
+}
+loadHistory();
+
+// Quiz
+let correctAnswer = '';
+let timerId;
+let score = 0;
+const categoryLabel = document.getElementById('categoryLabel');
+const labels = ['A','B','C','D'];
+
+async function getQuestion() {
+    try {
+        const res = await fetch('https://opentdb.com/api.php?amount=1&type=multiple&encode=url3986');
+        const data = await res.json();
+        const q = data.results[0];
+        correctAnswer = decodeURIComponent(q.correct_answer);
+        const questionText = decodeURIComponent(q.question);
+        const incorrect = q.incorrect_answers.map(a => decodeURIComponent(a));
+        const allOptions = [correctAnswer, ...incorrect].sort(() => Math.random() - 0.5);
+
+        document.getElementById('question').textContent = questionText;
+        categoryLabel.textContent = decodeURIComponent(q.category);
+
+        const optsDiv = document.getElementById('options');
+        optsDiv.innerHTML = '';
+        allOptions.forEach((opt,i) => {
+            const d = document.createElement('div');
+            d.className = 'option';
+            d.dataset.label = labels[i] || '';
+            d.textContent = opt;
+            d.addEventListener('click', () => selectOption(d));
+            optsDiv.appendChild(d);
+        });
+        startCountdown();
+    } catch { console.error('Failed to load question.'); }
+}
+
+function startCountdown() {
+    let t = 30;
+    document.getElementById('timer').textContent = t;
+    clearInterval(timerId);
+    timerId = setInterval(() => {
+        t--;
+        document.getElementById('timer').textContent = t;
+        if (t <= 0) { 
+            clearInterval(timerId); 
+            showCorrect();
+            setTimeout(getQuestion, 3000);
+        }
+    }, 1000);
+}
+
+function selectOption(el) {
+    clearInterval(timerId);
+    const allOptions = document.querySelectorAll('.option');
+    allOptions.forEach(o => o.removeEventListener('click', () => selectOption(o)));
+
+    if(el.textContent === correctAnswer){
+        el.classList.add('correct');
+        score += correctAnswer.length;
+    } else {
+        el.classList.add('wrong');
+        score -= el.textContent.length;
+        showCorrect();
+    }
+    document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+    
+    setTimeout(getQuestion, 3000);
+}
+
+function showCorrect() {
+    document.querySelectorAll('.option').forEach(el => {
+        if (el.textContent === correctAnswer) el.classList.add('correct');
+    });
+}
+getQuestion();
+
+// Quotes
+async function loadQuotes() {
+    const carousel = document.getElementById('quoteCarousel');
+    carousel.innerHTML = '';
+    const apis = [
+        'https://api.quotable.io/random',
+        'https://programming-quotes-api.herokuapp.com/quotes/random'
+    ];
+    for (let i=0;i<6;i++) {
+        try {
+            const api = apis[i % apis.length];
+            const r = await fetch(api);
+            const j = await r.json();
+            let content='', author='';
+            if(api.includes('quotable')) { content=j.content; author=j.author; }
+            else { content=j.en; author=j.author; }
+            const card = document.createElement('div');
+            card.className='quoteCard';
+            card.innerHTML=`"${content}"<br><b>- ${author}</b>`;
+            carousel.appendChild(card);
+        } catch {}
+    }
+}
+loadQuotes();
+setInterval(loadQuotes, 60000);
+</script>
+</body>
+</html>
