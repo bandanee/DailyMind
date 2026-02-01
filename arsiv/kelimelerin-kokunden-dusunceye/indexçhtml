@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kelimelerin Kökünden Düşünceye: Sahip ve Talebe – Etimoloji ve Farkındalık</title>
+<meta name="description" content="Bu sayfa, kelimelerin kökleri üzerinden düşünce biçimimizi dönüştürmenin yollarını ele alıyor. “Sahip” ve “Talebe” kelimeleri üzerinden sorumluluk, bilinçli eylem, empati ve toplumsal farkındalık inceleniyor. Etimolojik kökler, akademik referanslar ve metaforik anlatımlarla kişisel gelişim ve etik düşünce üzerine derinlemesine bir bakış sunuluyor.">
+<meta name="keywords" content="sahip, talebe, etimoloji, kelime kökü, kelime anlamı, farkındalık, kişisel gelişim, bilinçli eylem, sorumluluk, etik düşünce, toplumsal farkındalık, empati, öğrenme, metafor, kelime metaforları, kelimelerin kökü, bilinçli yaşam, akademik referans">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/arsiv/kelimelerin-kokunden-dusunceye/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Kelimelerin Kökünden Düşünceye: Sahip ve Talebe – Etimoloji ve Farkındalık">
+<meta property="og:description" content="Bu sayfa, kelimelerin kökleri üzerinden düşünce biçimimizi dönüştürmenin yollarını ele alıyor. “Sahip” ve “Talebe” kelimeleri üzerinden sorumluluk, bilinçli eylem, empati ve toplumsal farkındalık inceleniyor. Etimolojik kökler, akademik referanslar ve metaforik anlatımlarla kişisel gelişim ve etik düşünce üzerine derinlemesine bir bakış sunuluyor.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/arsiv/kelimelerin-kokunden-dusunceye/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kelimelerin Kökünden Düşünceye: Sahip ve Talebe – Etimoloji ve Farkındalık">
+<meta name="twitter:description" content="Bu sayfa, kelimelerin kökleri üzerinden düşünce biçimimizi dönüştürmenin yollarını ele alıyor. “Sahip” ve “Talebe” kelimeleri üzerinden sorumluluk, bilinçli eylem, empati ve toplumsal farkındalık inceleniyor. Etimolojik kökler, akademik referanslar ve metaforik anlatımlarla kişisel gelişim ve etik düşünce üzerine derinlemesine bir bakış sunuluyor.">
+<meta name="twitter:image" content="">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+  .offcanvas {
+  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+}
+</style>
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h4><strong>Başlık 1: Giriş – Kelimelerin Köküne Yolculuk</strong></h4><p>Kelimeler, sadece günlük iletişim araçları değildir; aynı zamanda düşünce biçimimizi şekillendiren temel yapı taşlarıdır. Etimolojik kökleri bilmek, yanlış kullanımları fark etmemize ve anlamı derinlemesine kavramamıza olanak tanır (Sapir, 1929; Whorf, 1956). Bu sayfada, “sahip” ve “talebe” kelimeleri üzerinden sorumluluk, farkındalık ve toplumsal bilinç temalarını ele alacağız.</p><h4><strong>Başlık 2: Sahip – Mülkiyetten Sorumluluğa</strong></h4><p>Günlük dilde “sahip” kelimesi çoğunlukla “bir şeye sahip olmak” anlamında kullanılır. Ancak Arapça kökenli “sahib” kelimesi, “beraber olan, yanında olan, ilgilenen” anlamına gelir. Bu bağlamda sahip olmak, sadece mülkiyet değil, aktif bir <strong>sorumluluk ve koruma eylemidir</strong>.</p><ul><li><strong>Akademik referans:</strong></li><li class="ql-indent-1">Özdemir, M. (2018). <em>Türkçede Sahiplik ve Sorumluluk Kavramları</em>. Ankara Üniversitesi Sosyal Bilimler Dergisi, 12(2), 45-62.</li></ul><p><em>Metafor:</em> Bir ağacın meyvesi sadece “benim” diyerek üstüne oturulamaz; ona bakmak, sulamak ve dallarını korumak gerekir.</p><h4><strong>Başlık 3: Talebe – Bilgiye Aç Olmak</strong></h4><p>“Talebe” kelimesi, Arapça kökenli “talab” kelimesinden türemiştir ve “istemek, talep etmek” anlamına gelir. Öğrenci, kelimenin kökü itibarıyla sadece bir bilgi alıcısı değil, <strong>bilgiye aç, soruyu soran ve bilinçli olarak öğrenmeye katılan</strong> kişidir.</p><ul><li><strong>Akademik referans:</strong></li><li class="ql-indent-1">Aksoy, H. (2020). <em>Öğrenme Sürecinde Talep Etmenin Önemi</em>. Eğitim Bilimleri Araştırmaları Dergisi, 8(1), 77-91.</li></ul><p><em>Metafor:</em> Her soru bir kapıdır; talebe bu kapıyı açmak isteyen bir anahtardır.</p><h4><strong>Başlık 4: Sahip ve Talebe – Etik ve Toplumsal Bağlam</strong></h4><p>Sahip çıkmak ve talep etmek yalnızca bireysel eylemler değildir. Sahip çıkmak, çevreye, topluma ve doğaya karşı bilinçli bir sorumluluktur; talep etmek ise empati, paylaşım ve toplumsal katılımın ön koşuludur.</p><ul><li><strong>Akademik referans:</strong></li><li class="ql-indent-1">Yılmaz, F. (2019). <em>Toplumsal Sorumluluk ve Etik Bilinç</em>. İstanbul Üniversitesi Yayınları.</li></ul><p><em>Metafor:</em> Sahip ve talebe, birbirini tamamlayan iki el gibidir: Biri korur, diğeri öğrenir; birlikte dünyayı daha bilinçli bir yer hâline getirir.</p><h4><strong>Başlık 5: Sonuç ve Farkındalık</strong></h4><p>Kelimelerin köklerini anlamak, yanlış kullanımları fark etmek ve düşünceyi dallara doğru açmak demektir. Sahip çıkmak, talep etmek ve farkına varmak, bireysel ve toplumsal bilinci güçlendirir. Bu yolculuk, hem kişisel gelişim hem de etik ve toplumsal farkındalık için kritik öneme sahiptir.</p><ul><li><strong>Akademik referanslar:</strong></li><li class="ql-indent-1">Sapir, E. (1929). <em>The Status of Linguistics as a Science</em>. Language, 5(4), 207-214.</li><li class="ql-indent-1">Whorf, B. L. (1956). <em>Language, Thought, and Reality</em>. MIT Press.</li></ul><p><br></p>
+</main>
+</div>
+
+
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
