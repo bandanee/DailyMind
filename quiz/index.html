@@ -17,7 +17,6 @@ html, body {
     font-family: 'Roboto', sans-serif;
     background: #0e0e0e;
     color: #e0e0e0;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,6 +160,13 @@ html, body {
     color: #fff;
 }
 
+#scoreDisplay {
+    font-size: 2vw;
+    font-weight: 900;
+    margin: 15px 0;
+    color: #00ff88;
+}
+
 #quoteCarousel {
     display: flex;
     overflow-x: auto;
@@ -185,13 +191,6 @@ html, body {
 
 #quoteCarousel::-webkit-scrollbar { height: 8px; }
 #quoteCarousel::-webkit-scrollbar-thumb { background: #888; }
-
-#scoreDisplay {
-    font-size: 2vw;
-    font-weight: 900;
-    margin: 15px 0;
-    color: #00ff88;
-}
 </style>
 </head>
 <body>
@@ -207,43 +206,32 @@ html, body {
 
     <div id="historyMarquee" style="display:none"><span id="historyList">Loading events...</span></div>
     <div id="question">Loading question...</div>
-    <div id="timer" style="position:absolute;margin-top:-1px;">30</div>
+    <div id="timer">30</div>
     <div id="options"></div>
     <div id="scoreDisplay">Score: 0</div>
 </div>   
-
+ 
 <div id="quoteCarousel"></div>
-
+ 
 <script>
 // Clock
 function updateClock() {
     const now = new Date();
-    const h = String(now.getHours()).padStart(2,'0');
-    const m = String(now.getMinutes()).padStart(2,'0');
-    const s = String(now.getSeconds()).padStart(2,'0');
-    const month = String(now.getMonth()+1).padStart(2,'0');
-    const day = String(now.getDate()).padStart(2,'0');
-    const year = now.getFullYear();
-    document.getElementById('todayDate').textContent = `${month}/${day}/${year}`;
-    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    document.getElementById('todayDate').textContent = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
+    document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour12: false });
 }
 setInterval(updateClock, 1000);
 updateClock();
 
 // Today in history
 async function loadHistory() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
     try {
-        const res = await fetch(`https://history.muffinlabs.com/date/${month}/${day}`);
+        const today = new Date();
+        const res = await fetch(`https://history.muffinlabs.com/date/${today.getMonth()+1}/${today.getDate()}`);
         const data = await res.json();
-        const events = data.data.Events || [];
-        const marqueeText = events.slice(0, 10).map(ev => `${ev.year}: ${ev.text}`).join(' ⚡ ');
-        document.getElementById('historyList').textContent = marqueeText;
-    } catch {
-        document.getElementById('historyList').textContent = "Events could not be loaded.";
-    }
+        const events = data.data.Events.slice(0,10).map(e=>`${e.year}: ${e.text}`).join(' ⚡ ');
+        document.getElementById('historyList').textContent = events;
+    } catch { document.getElementById('historyList').textContent = "Events could not be loaded."; }
 }
 loadHistory();
 
@@ -251,101 +239,99 @@ loadHistory();
 let correctAnswer = '';
 let timerId;
 let score = 0;
-const categoryLabel = document.getElementById('categoryLabel');
 const labels = ['A','B','C','D'];
 
 async function getQuestion() {
     try {
         const res = await fetch('https://opentdb.com/api.php?amount=1&type=multiple&encode=url3986');
-        const data = await res.json();
-        const q = data.results[0];
+        const q = (await res.json()).results[0];
         correctAnswer = decodeURIComponent(q.correct_answer);
         const questionText = decodeURIComponent(q.question);
-        const incorrect = q.incorrect_answers.map(a => decodeURIComponent(a));
-        const allOptions = [correctAnswer, ...incorrect].sort(() => Math.random() - 0.5);
+        const incorrect = q.incorrect_answers.map(a=>decodeURIComponent(a));
+        const allOptions = [correctAnswer,...incorrect].sort(()=>Math.random()-0.5);
 
         document.getElementById('question').textContent = questionText;
-        categoryLabel.textContent = decodeURIComponent(q.category);
+        document.getElementById('categoryLabel').textContent = decodeURIComponent(q.category);
 
         const optsDiv = document.getElementById('options');
         optsDiv.innerHTML = '';
-        allOptions.forEach((opt,i) => {
+        allOptions.forEach((opt,i)=>{
             const d = document.createElement('div');
-            d.className = 'option';
-            d.dataset.label = labels[i] || '';
+            d.className='option';
+            d.dataset.label = labels[i];
             d.textContent = opt;
-            d.addEventListener('click', () => selectOption(d));
+            d.addEventListener('click',()=>selectOption(d));
             optsDiv.appendChild(d);
         });
+
         startCountdown();
-    } catch { console.error('Failed to load question.'); }
+    } catch { console.error('Failed to load question'); }
 }
 
-function startCountdown() {
-    let t = 30;
-    document.getElementById('timer').textContent = t;
+function startCountdown(){
+    let t=30;
+    document.getElementById('timer').textContent=t;
     clearInterval(timerId);
-    timerId = setInterval(() => {
+    timerId=setInterval(()=>{
         t--;
-        document.getElementById('timer').textContent = t;
-        if (t <= 0) { 
-            clearInterval(timerId); 
+        document.getElementById('timer').textContent=t;
+        if(t<=0){
+            clearInterval(timerId);
             showCorrect();
-            setTimeout(getQuestion, 3000); // continue automatically
+            setTimeout(getQuestion,3000);
         }
-    }, 1000);
+    },1000);
 }
 
-function selectOption(el) {
+function selectOption(el){
     clearInterval(timerId);
-    const allOptions = document.querySelectorAll('.option');
-    allOptions.forEach(o => o.removeEventListener('click', () => selectOption(o)));
+    document.querySelectorAll('.option').forEach(o=>o.removeEventListener('click',()=>selectOption(o)));
 
-    if(el.textContent === correctAnswer){
+    if(el.textContent===correctAnswer){
         el.classList.add('correct');
-        score += correctAnswer.length;
+        score+=correctAnswer.length;
     } else {
         el.classList.add('wrong');
-        score -= el.textContent.length;
+        score-=el.textContent.length;
         showCorrect();
     }
-    document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
-    
-    setTimeout(getQuestion, 3000); // always continue after 3 seconds
+    document.getElementById('scoreDisplay').textContent=`Score: ${score}`;
+    setTimeout(getQuestion,3000);
 }
 
-function showCorrect() {
-    document.querySelectorAll('.option').forEach(el => {
-        if (el.textContent === correctAnswer) el.classList.add('correct');
+function showCorrect(){
+    document.querySelectorAll('.option').forEach(el=>{
+        if(el.textContent===correctAnswer) el.classList.add('correct');
     });
 }
+
 getQuestion();
 
 // Quotes
-async function loadQuotes() {
-    const carousel = document.getElementById('quoteCarousel');
-    carousel.innerHTML = '';
-    const apis = [
+async function loadQuotes(){
+    const carousel=document.getElementById('quoteCarousel');
+    carousel.innerHTML='';
+    const apis=[
         'https://api.quotable.io/random',
         'https://programming-quotes-api.herokuapp.com/quotes/random'
     ];
-    for (let i=0;i<6;i++) {
-        try {
-            const api = apis[i % apis.length];
-            const r = await fetch(api);
-            const j = await r.json();
-            let content='', author='';
+    for(let i=0;i<6;i++){
+        try{
+            const api=apis[i%apis.length];
+            const r=await fetch(api);
+            const j=await r.json();
+            let content='',author='';
             if(api.includes('quotable')) { content=j.content; author=j.author; }
             else { content=j.en; author=j.author; }
-            const card = document.createElement('div');
+            const card=document.createElement('div');
             card.className='quoteCard';
             card.innerHTML=`"${content}"<br><b>- ${author}</b>`;
             carousel.appendChild(card);
-        } catch {}
+        }catch{}
     }
 }
 loadQuotes();
-setInterval(loadQuotes, 60000);
+setInterval(loadQuotes,60000);
 </script>
 </body>
 </html>
