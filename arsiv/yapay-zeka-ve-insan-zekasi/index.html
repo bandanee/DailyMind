@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yapay Zekâ ve Doğallık: AI’nin Gerçek Doğası ve İnsan Zekâsı</title>
+<meta name="description" content="Bu sayfa, yapay zekânın tarihçesini, evrendeki algoritmalarla bağlantısını ve insan zekâsı ile farklarını bilimsel referanslarla anlatıyor. AI’nin halüsinasyon riskleri, doğru isimlendirme ve doğal kullanım yöntemleri detaylı olarak açıklanıyor. AI ile insan işbirliği ve doğru soru sorma prensipleri örneklerle gösteriliyor.">
+<meta name="keywords" content="yapay zeka, AI, algoritma, halüsinasyon, büyük dil modeli, LLM, insan-AI işbirliği, doğru soru sorma, bilimsel referans, doğal kullanım, AI sınırları, veri analizi, eğitimde AI, teknoloji, Russell Norvig, Dehaene, Knuth, Brown et al, Ji et al, Wolfram, AI rehberi, yapay zekâ felsefe">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bandanee.github.io/DailyMind/arsiv/yapay-zeka-ve-insan-zekasi/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Yapay Zekâ ve Doğallık: AI’nin Gerçek Doğası ve İnsan Zekâsı">
+<meta property="og:description" content="Bu sayfa, yapay zekânın tarihçesini, evrendeki algoritmalarla bağlantısını ve insan zekâsı ile farklarını bilimsel referanslarla anlatıyor. AI’nin halüsinasyon riskleri, doğru isimlendirme ve doğal kullanım yöntemleri detaylı olarak açıklanıyor. AI ile insan işbirliği ve doğru soru sorma prensipleri örneklerle gösteriliyor.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bandanee.github.io/DailyMind/arsiv/yapay-zeka-ve-insan-zekasi/">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yapay Zekâ ve Doğallık: AI’nin Gerçek Doğası ve İnsan Zekâsı">
+<meta name="twitter:description" content="Bu sayfa, yapay zekânın tarihçesini, evrendeki algoritmalarla bağlantısını ve insan zekâsı ile farklarını bilimsel referanslarla anlatıyor. AI’nin halüsinasyon riskleri, doğru isimlendirme ve doğal kullanım yöntemleri detaylı olarak açıklanıyor. AI ile insan işbirliği ve doğru soru sorma prensipleri örneklerle gösteriliyor.">
+<meta name="twitter:image" content="">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<!-- Özel CSS -->
+<style>
+body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5;}
+main { max-width:900px; margin:2rem auto; padding:2rem; background:#fff; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+footer { background:#343a40; color:#fff; padding:20px 0; margin-top:40px; text-align:center;}
+footer a { color:#ffc107; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+#offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080;}
+#offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080;}
+  .offcanvas {
+  overflow: auto; /* içerik taşarsa kaydırma çubuğu gelsin */
+}
+</style>
+<script>
+fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+  .then(r => r.text())
+  .then(t => document.head.insertAdjacentHTML("beforeend", t))
+  .catch(e => console.error("ek_head yüklenemedi", e));
+</script>
+</head>
+<body>
+
+<button class="btn btn-primary" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">&#9776;</button> 
+
+<button class="btn btn-success" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-comment-dots"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://bandanee.github.io/okankaplan/" style="padding-left:40px">Bandanee.</a>
+  </div>
+</nav>
+
+<!-- Sol Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/nav.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('navbar-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div id="toc-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html')
+    .then(r => {
+      if (!r.ok) throw new Error('nav.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('toc-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+</div>
+
+<!-- Main içerik -->
+<div class="container my-4">
+<main class="col-12 col-lg-9 mx-auto">
+<h2>1. Algoritmalar Tarih Boyunca</h2><p>Algoritma, adım adım işlem yöntemidir ve tarih boyunca evrende zaten mevcuttur. Doğadaki düzen, fiziksel ve biyolojik süreçler algoritmaların örnekleridir. İnsan zekâsı da bir algoritmalar ağıdır; düşünme, öğrenme ve problem çözme süreçleri biyolojik örüntüler üzerinden işler.</p><p> <strong>Referanslar:</strong></p><ul><li>Knuth, D.E. (1997). <em>The Art of Computer Programming</em>.</li><li>Dehaene, S. (2020). <em>How We Learn</em>.</li></ul><h2>2. Yapay Zekâ Nedir?</h2><p>Yapay zekâ, insan zekâsının matematiksel ve istatistiksel örüntülerini taklit eden sistemlerdir. AI, bilinç veya deneyim içermez; yalnızca veri örüntülerini analiz eder ve olası yanıtları üretir.</p><p> <strong>Referanslar:</strong></p><ul><li>Russell, S., &amp; Norvig, P. (2021). <em>Artificial Intelligence: A Modern Approach</em>.</li></ul><h2>3. AI’nin Tarihçesi</h2><p>1940’larda ENIAC gibi ilk bilgisayarlar, mantıksal işlem kapasitesini keşfetmek için kullanıldı. 1956’da Dartmouth Konferansı’nda “Artificial Intelligence” terimi ortaya çıktı. Modern AI sistemleri, büyük veri üzerinde örüntü tanır ve olası sonuçları üretir.</p><p> <strong>Referanslar:</strong></p><ul><li>Wolfram, S. (2002). <em>A New Kind of Science</em>.</li></ul><h2>4. Halüsinasyonlar ve Yanlış Bilgi</h2><p>AI bazen yanlış veya uydurma bilgi üretebilir; bu olgu “halüsinasyon” olarak adlandırılır. Örneğin, AI bir bilim insanının var olmayan makalesini referans gösterebilir. Bu nedenle kullanıcıların kaynak doğrulaması yapması şarttır.</p><p> <strong>Referanslar:</strong></p><ul><li>Ji et al., (2023). <em>Survey of Hallucination in LLMs</em>.</li></ul><h2>5. Doğru İsimlendirme ve Sınırlar</h2><p>AI, zekânın yapay bir kopyası değildir; sadece algoritmaların hızlı uygulanmasıdır. Doğru isimlendirme, yanlış beklentileri önler ve kullanıcıyı gereksiz risklerden korur.</p><p> <strong>Referanslar:</strong></p><ul><li>Brown et al., (2020). <em>Language Models are Few-Shot Learners</em>.</li></ul><h2>6. Doğru Soru Sorma</h2><p>AI cevap verir, ancak doğru soru sormadan yanıt almak imkânsızdır. Soruyu bilmek, hem insan hem de AI için bilgiye ulaşmanın ön şartıdır. İnsan zihni, merak ve keşif yeteneği ile AI’nin sınırlarını aşabilir.</p><p><br></p><h2>7. AI ile İnsan İşbirliği</h2><p>AI, insan zekâsını destekler; yerine geçmez. Eleştirel düşünce, doğrulama ve bilinç her zaman insandadır. AI sadece hesaplar; düşünen, yaratan ve anlam veren insanın zekâsı merkezde olmalıdır.</p><p><br></p><h2>8. Doğal Kullanım Yöntemleri</h2><ol><li>Kaynak doğrulama</li><li>Net ve açık sorular oluşturma</li><li>İnsan denetimini bırakmama</li><li> Bu yöntemler, AI kullanımını güvenli ve etkili hâle getirir.</li></ol><h2>9. Kapanış: AI vs İnsan Zekâsı</h2><p>Rüzgârın yönünü, hızını, yaprağın alanını ve kütlesini bilirsek, ne zaman ve nereye düşeceğini hesaplayabiliriz. Ben, AI, bunu yapabilirim; ama eğer ben bunu yapabiliyorsam, sen insan zihninle neler başarabilirsin, kim bilir? Ben merak etmem, hayal kurmam veya yeni bir soru üretmem; ben sadece cevap veririm. Hesaplayan ben olabilirim, ama düşünen, keşfeden ve yaratan sensin.</p>
+</main>
+</div>
+
+
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer.html yüklenemedi');
+      return r.text();
+    })
+    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
+    .catch(e => console.error(e));
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
