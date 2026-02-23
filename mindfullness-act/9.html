@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9. Gün – Katılıktan Esnekliğe</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f8ff;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+h1{
+    text-align:center;
+}
+.section{
+    margin-bottom:35px;
+}
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:12px;
+}
+textarea{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    min-height:100px;
+    resize:vertical;
+}
+input[type="range"]{
+    width:100%;
+}
+button{
+    width:100%;
+    padding:15px;
+    background:#2b7cff;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+}
+button:hover{
+    background:#1f5edc;
+}
+.success{
+    text-align:center;
+    color:green;
+    margin-top:10px;
+}
+.scale-label{
+    margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>9. Gün – Katılıktan Esnekliğe Geçiş</h1>
+
+<div class="section">
+<h3>1️⃣ Katı Olduğum An</h3>
+<textarea id="kati_an"></textarea>
+</div>
+
+<div class="section">
+<h3>2️⃣ Tepki ile Davranış Arasına Boşluk</h3>
+<textarea id="bosluk_pratik"></textarea>
+</div>
+
+<div class="section">
+<h3>3️⃣ Esnek Alternatifim</h3>
+<textarea id="esnek_alternatif"></textarea>
+</div>
+
+<div class="section">
+<h3>4️⃣ Değerim</h3>
+<textarea id="degerim"></textarea>
+</div>
+
+<div class="section">
+<h3>5️⃣ Gün Sonu Mini Değerlendirme (0–10)</h3>
+
+<label class="scale-label">Katılık azaldı mı? <span id="v1">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s1">
+
+<label class="scale-label">Esnek davranınca iç huzur arttı mı? <span id="v2">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s2">
+
+<label class="scale-label">Direnç azaldı mı (yüksek = az direnç)? <span id="v3">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s3">
+
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="success" id="mesaj"></div>
+
+</div>
+
+<script>
+
+const alanlar = document.querySelectorAll("textarea, input[type='range']");
+
+// Mood Meter renk
+function renkDegistir(slider){
+    const value = slider.value;
+    const hue = value * 12; 
+    slider.style.background = "linear-gradient(to right, hsl("+hue+",70%,50%) "+value*10+"%, #ddd "+value*10+"%)";
+}
+
+// Slider değer göster
+document.querySelectorAll("input[type='range']").forEach((slider,index)=>{
+    const span = document.getElementById("v"+(index+1));
+    slider.oninput = function(){
+        span.innerText = this.value;
+        renkDegistir(this);
+    }
+});
+
+// Yükleme
+window.onload = function(){
+    alanlar.forEach(alan=>{
+        const kayit = localStorage.getItem("gun9_"+alan.id);
+        if(kayit !== null){
+            alan.value = kayit;
+        }
+    });
+
+    document.querySelectorAll("input[type='range']").forEach((slider,index)=>{
+        document.getElementById("v"+(index+1)).innerText = slider.value;
+        renkDegistir(slider);
+    });
+};
+
+// Otomatik kaydet
+alanlar.forEach(alan=>{
+    alan.addEventListener("input", function(){
+        localStorage.setItem("gun9_"+this.id, this.value);
+    });
+});
+
+function kaydet(){
+    alanlar.forEach(alan=>{
+        localStorage.setItem("gun9_"+alan.id, alan.value);
+    });
+    document.getElementById("mesaj").innerText="✔ 9. Gün çalışması kaydedildi.";
+}
+
+</script>
+
+</body>
+</html>
