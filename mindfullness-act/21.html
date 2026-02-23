@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21. Gün – Haftalık Özet ve Kararlı Eylem</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6fb;
+    margin:0;
+    padding:20px;
+    color:#333;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    color:#2b4c7e;
+}
+
+.task-chip{
+    display:inline-block;
+    background:#e7f0ff;
+    padding:8px 14px;
+    border-radius:20px;
+    margin:5px 5px 10px 0;
+    font-size:14px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section h2{
+    color:#2b4c7e;
+    font-size:18px;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-top:8px;
+    resize:vertical;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#2b4c7e;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1f365a;
+}
+
+.saved{
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>📅 3G – Haftalık Özet ve Kararlı Eylem Planı</h1>
+<p><strong>21. Gün</strong> – Haftalık uygulamaları gözden geçirme ve kararlı eylem oluşturma</p>
+
+<div>
+<span class="task-chip">📌 Haftalık uygulamaları gözden geçir ve kararlı bir eylem planla</span>
+<span class="task-chip">🔎 Hangi ACT süreci bana kolay / zor geldi?</span>
+</div>
+
+<div class="section">
+<h2>📘 KARARLI EYLEM VE HAFTALIK ÖZET NEDİR?</h2>
+<p>
+Kararlı eylem, değerler doğrultusunda bilinçli ve sürdürülebilir adımlar atmaktır.
+Haftalık özet ise uygulamaları gözden geçirerek gelişimi değerlendirme sürecidir.
+Bu bölüm, farkındalık ve planlama kasını güçlendirmeyi amaçlar.
+</p>
+</div>
+
+<div class="section">
+<h2>🕒 10–15 Dakikalık Haftalık Özet ve Kararlı Eylem Pratiği</h2>
+<textarea id="weeklyPlan" placeholder="Bu hafta uyguladıklarım ve gelecek hafta için kararlı eylem planım..."></textarea>
+</div>
+
+<div class="section">
+<h2>🔎 Haftalık Değerlendirme Soruları</h2>
+<textarea id="weeklyReflection" placeholder="Hangi ACT sürecini uygulamak bana en kolay geldi? Hangisi zorlayıcıydı?"></textarea>
+</div>
+
+<div class="section">
+<h2>🌿 Öneriler</h2>
+<textarea id="weeklySuggestions" placeholder="Kendime notlarım, önerilerim, geliştirmek istediğim noktalar..."></textarea>
+</div>
+
+<button onclick="saveData()">💾 KAYDET</button>
+<div class="saved" id="savedMessage">✓ Kaydedildi!</div>
+
+</div>
+
+<script>
+const storageKey = "day21_weekly_commitment_review";
+
+function saveData(){
+    const data = {
+        weeklyPlan: document.getElementById("weeklyPlan").value,
+        weeklyReflection: document.getElementById("weeklyReflection").value,
+        weeklySuggestions: document.getElementById("weeklySuggestions").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.style.display = "block";
+
+    setTimeout(()=>{
+        msg.style.display = "none";
+    },2000);
+}
+
+function loadData(){
+    const saved = localStorage.getItem(storageKey);
+    if(saved){
+        const data = JSON.parse(saved);
+        document.getElementById("weeklyPlan").value = data.weeklyPlan || "";
+        document.getElementById("weeklyReflection").value = data.weeklyReflection || "";
+        document.getElementById("weeklySuggestions").value = data.weeklySuggestions || "";
+    }
+}
+
+window.onload = loadData;
+</script>
+
+</body>
+</html>
