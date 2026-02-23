@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindfulness Günlük Formu – Gün 4</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+  h2 { color: #2E8B57; }
+  label { display: block; margin-top: 10px; font-weight: bold; }
+  input, textarea, select { width: 100%; padding: 6px; margin-top: 4px; }
+  .section { border: 1px solid #ccc; padding: 15px; margin-top: 20px; border-radius: 8px; }
+  button { margin-top: 15px; padding: 10px 20px; background-color: #2E8B57; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background-color: #246b45; }
+</style>
+</head>
+<body>
+
+<h1>Mindfulness & ACT – Günlük Form: Gün 4</h1>
+
+<form id="mindfulnessForm">
+
+  <div class="section">
+    <h2>1. 5 Dakikalık Nefes Pratiği</h2>
+    <label>Sakin bir pozisyon aldım ve nefesi gözlemledim:</label>
+    <textarea id="pratikPozisyon"></textarea>
+
+    <label>Dikkat dağıldığında nazikçe nefese geri döndüm:</label>
+    <textarea id="pratikDikkatGeriDonus"></textarea>
+
+    <label>Nefesi değiştirmeye çalışmadım, doğal ritmi gözlemledim:</label>
+    <textarea id="pratikNefesRitmi"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>2. Deneyim Günlüğü</h2>
+    <label>Nefes pratiğinde fark ettiğim hisler:</label>
+    <textarea id="deneyimHisler"></textarea>
+
+    <label>Beden hissi, nefes hızı, dikkat dağılımları, duygular, zihinsel sakinlik ve geri dönüş kolaylığı:</label>
+    <textarea id="deneyimDetay"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>3. Farkındalık Ölçümü</h2>
+    <label>Pratik Öncesi Stres Seviyesi (0–10):</label>
+    <input type="number" id="stresOncesi" min="0" max="10">
+
+    <label>Pratik Sonrası Stres Seviyesi (0–10):</label>
+    <input type="number" id="stresSonrasi" min="0" max="10">
+
+    <label>Pratik Öncesi Odaklanma Düzeyi (0–10):</label>
+    <input type="number" id="odakOncesi" min="0" max="10">
+
+    <label>Pratik Sonrası Odaklanma Düzeyi (0–10):</label>
+    <input type="number" id="odakSonrasi" min="0" max="10">
+
+    <label>Pratik Öncesi Sabır Düzeyi (0–10):</label>
+    <input type="number" id="sabirOncesi" min="0" max="10">
+
+    <label>Pratik Sonrası Sabır Düzeyi (0–10):</label>
+    <input type="number" id="sabirSonrasi" min="0" max="10">
+  </div>
+
+  <div class="section">
+    <h2>4. Mikro Entegrasyon Görevi</h2>
+    <label>Gün içinde bir kez daha 3 bilinçli nefes aldım ve gözlemlerimi yaptım:</label>
+    <textarea id="mikroGozlem"></textarea>
+
+    <label>Özellikle stresli anlarda mindfulness uyguladım ve deneyimlerimi yazdım:</label>
+    <textarea id="mikroDeneyim"></textarea>
+  </div>
+
+  <button type="button" onclick="kaydet()">💾 Kaydet</button>
+  <button type="button" onclick="indirJSON()">📥 JSON İndir</button>
+</form>
+
+<script>
+function kaydet() {
+  const formData = {
+    pratik: {
+      pozisyon: document.getElementById('pratikPozisyon').value,
+      dikkatGeri: document.getElementById('pratikDikkatGeriDonus').value,
+      nefesRitmi: document.getElementById('pratikNefesRitmi').value
+    },
+    deneyim: {
+      hisler: document.getElementById('deneyimHisler').value,
+      detay: document.getElementById('deneyimDetay').value
+    },
+    farkindalik: {
+      stresOncesi: document.getElementById('stresOncesi').value,
+      stresSonrasi: document.getElementById('stresSonrasi').value,
+      odakOncesi: document.getElementById('odakOncesi').value,
+      odakSonrasi: document.getElementById('odakSonrasi').value,
+      sabirOncesi: document.getElementById('sabirOncesi').value,
+      sabirSonrasi: document.getElementById('sabirSonrasi').value
+    },
+    mikro: {
+      gozlem: document.getElementById('mikroGozlem').value,
+      deneyim: document.getElementById('mikroDeneyim').value
+    }
+  };
+
+  localStorage.setItem('gun4_mindfulness', JSON.stringify(formData));
+  alert('Gün 4 günlük başarıyla kaydedildi!');
+}
+
+function indirJSON() {
+  const data = localStorage.getItem('gun4_mindfulness');
+  if(!data) { alert('Önce kaydetmeniz gerekiyor!'); return; }
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download","gun4_mindfulness.json");
+  dlAnchor.click();
+}
+
+// Sayfa yüklendiğinde LocalStorage'daki verileri doldurma
+window.onload = () => {
+  const data = JSON.parse(localStorage.getItem('gun4_mindfulness') || '{}');
+  if(data.pratik) {
+    document.getElementById('pratikPozisyon').value = data.pratik.pozisyon || '';
+    document.getElementById('pratikDikkatGeriDonus').value = data.pratik.dikkatGeri || '';
+    document.getElementById('pratikNefesRitmi').value = data.pratik.nefesRitmi || '';
+  }
+  if(data.deneyim) {
+    document.getElementById('deneyimHisler').value = data.deneyim.hisler || '';
+    document.getElementById('deneyimDetay').value = data.deneyim.detay || '';
+  }
+  if(data.farkindalik) {
+    document.getElementById('stresOncesi').value = data.farkindalik.stresOncesi || '';
+    document.getElementById('stresSonrasi').value = data.farkindalik.stresSonrasi || '';
+    document.getElementById('odakOncesi').value = data.farkindalik.odakOncesi || '';
+    document.getElementById('odakSonrasi').value = data.farkindalik.odakSonrasi || '';
+    document.getElementById('sabirOncesi').value = data.farkindalik.sabirOncesi || '';
+    document.getElementById('sabirSonrasi').value = data.farkindalik.sabirSonrasi || '';
+  }
+  if(data.mikro) {
+    document.getElementById('mikroGozlem').value = data.mikro.gozlem || '';
+    document.getElementById('mikroDeneyim').value = data.mikro.deneyim || '';
+  }
+};
+</script>
+
+</body>
+</html>
