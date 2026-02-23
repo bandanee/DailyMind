@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>17. Gün – 3C Kabul Süreci</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7f9;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* TASK ROW */
+.tasks-row{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+}
+
+.task{
+    flex:1;
+    min-width:250px;
+    background:#e3f2fd;
+    padding:15px;
+    border-radius:12px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+/* Sections */
+.section{
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+textarea{
+    width:100%;
+    min-height:100px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:vertical;
+    font-size:14px;
+}
+
+button{
+    background:#FF7043;
+    color:white;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    width:100%;
+}
+
+button:hover{
+    background:#F4511E;
+}
+
+.saved-msg{
+    text-align:center;
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>📘 17. Gün – 3C: Kabul Süreci</h1>
+
+<!-- TASKS -->
+<div class="tasks-row">
+    <div class="task">
+        ⏳ 5 Dakikalık Kabul Pratiği Yap
+    </div>
+    <div class="task">
+        💭 Hangi duygumu kabul ettim? Zorlandım mı?
+    </div>
+</div>
+
+<!-- Kabul Süreci -->
+<div class="section">
+<div class="section-title">📘 Kabul Süreci Nedir?</div>
+<textarea id="tanım" placeholder="Kabul sürecini kendi cümlelerinle yaz..."></textarea>
+</div>
+
+<!-- Günlük Kabul Pratiği -->
+<div class="section">
+<div class="section-title">🌿 Günlük Kabul Pratiği</div>
+<textarea id="pratik" placeholder="Bugünkü 5 dakikalık kabul pratiğinde neler yaptım?"></textarea>
+</div>
+
+<!-- Kendime Sorduğum Soru -->
+<div class="section">
+<div class="section-title">🔎 Kendime Sorduğum Soru</div>
+<textarea id="soru" placeholder="Bugün kendime hangi soruyu sordum?"></textarea>
+</div>
+
+<!-- Mini Uygulama -->
+<div class="section">
+<div class="section-title">📝 Günlük Mini Uygulama</div>
+<textarea id="mini" placeholder="Bugünkü durumumu nasıl gözlemledim?"></textarea>
+</div>
+
+<!-- Gün Sonu -->
+<div class="section">
+<div class="section-title">🌱 Gün Sonu Değerlendirme</div>
+<textarea id="degerlendirme" placeholder="Bugün kabul süreci bana ne öğretti?"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="saved-msg" id="savedMessage"></div>
+
+</div>
+
+<script>
+const storageKey = "gun17_3c_kabul";
+
+function kaydet(){
+    const data = {
+        tanim: document.getElementById("tanım").value,
+        pratik: document.getElementById("pratik").value,
+        soru: document.getElementById("soru").value,
+        mini: document.getElementById("mini").value,
+        degerlendirme: document.getElementById("degerlendirme").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.innerText = "✓ Kaydedildi!";
+    setTimeout(()=>{ msg.innerText=""; }, 3000);
+}
+
+function yukle(){
+    const savedData = localStorage.getItem(storageKey);
+    if(savedData){
+        const data = JSON.parse(savedData);
+        document.getElementById("tanım").value = data.tanim || "";
+        document.getElementById("pratik").value = data.pratik || "";
+        document.getElementById("soru").value = data.soru || "";
+        document.getElementById("mini").value = data.mini || "";
+        document.getElementById("degerlendirme").value = data.degerlendirme || "";
+    }
+}
+
+window.onload = yukle;
+</script>
+
+</body>
+</html>
