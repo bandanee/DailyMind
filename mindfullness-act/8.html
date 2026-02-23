@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8. Gün – Zihinsel Esneklik</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f3f7fc;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+h1{
+    text-align:center;
+}
+.section{
+    margin-bottom:35px;
+}
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:12px;
+}
+textarea{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    min-height:100px;
+    resize:vertical;
+}
+.checkbox-group label{
+    font-weight:normal;
+    display:block;
+    margin-top:6px;
+}
+input[type="range"]{
+    width:100%;
+}
+.scale-value{
+    font-weight:bold;
+    float:right;
+}
+button{
+    width:100%;
+    padding:15px;
+    background:#2b7cff;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+}
+button:hover{
+    background:#1f5edc;
+}
+.success{
+    text-align:center;
+    color:green;
+    margin-top:10px;
+}
+.note-box{
+    background:#eef5ff;
+    padding:15px;
+    border-radius:8px;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>8. Gün – Zihinsel Esneklik Geliştirme</h1>
+
+<div class="section">
+<h3>1️⃣ Günlük Yaşam Gözlemi</h3>
+
+<label>Kendimi esnek hissettiğim an:</label>
+<textarea id="esnek_an"></textarea>
+
+<label>Zorlandığım an:</label>
+<textarea id="zor_an"></textarea>
+</div>
+
+<div class="section">
+<h3>2️⃣ Mini Psikoeğitim – Kendini Değerlendir</h3>
+
+<div class="checkbox-group">
+<label><input type="checkbox" id="c1"> Plan değiştiğinde uyum sağlamak</label>
+<label><input type="checkbox" id="c2"> Duyguyu bastırmadan kabul etmek</label>
+<label><input type="checkbox" id="c3"> Düşüncelere körü körüne inanmamak</label>
+<label><input type="checkbox" id="c4"> Değer odaklı davranmak</label>
+<label><input type="checkbox" id="c5"> Zor anlarda nefese dönmek</label>
+</div>
+</div>
+
+<div class="section">
+<h3>3️⃣ Mini Öz Değerlendirme (0–10)</h3>
+
+<label>Zor anlarda sakin kalabilme: <span id="v1">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s1">
+
+<label>Duyguları kabul edebilme: <span id="v2">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s2">
+
+<label>Alternatif bakış açısı üretebilme: <span id="v3">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s3">
+
+<label>Değerlerine uygun davranabilme: <span id="v4">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s4">
+
+</div>
+
+<div class="section">
+<h3>4️⃣ Haftalık Farkındalık Kazanımı</h3>
+<div class="note-box">
+<p><strong>Hafta 1:</strong> Zihni fark etme</p>
+<p><strong>Hafta 2:</strong> Zor anlarda davranışı fark etme</p>
+</div>
+
+<label>Bu haftaya dair fark ettiğim gelişim:</label>
+<textarea id="haftalik_gelisim"></textarea>
+</div>
+
+<div class="section">
+<h3>5️⃣ Bir Sonraki Derse Köprü</h3>
+
+<p><em>“Zor bir duygu geldiğinde onunla savaşmak yerine alan açabilir miyim?”</em></p>
+<textarea id="kopru"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="success" id="mesaj"></div>
+
+</div>
+
+<script>
+
+const alanlar = document.querySelectorAll("textarea, input[type='checkbox'], input[type='range']");
+
+// Mood Meter Renk
+function renkDegistir(slider){
+    const value = slider.value;
+    const hue = value * 12;
+    slider.style.background = "linear-gradient(to right, hsl("+hue+",70%,50%) "+value*10+"%, #ddd "+value*10+"%)";
+}
+
+// Slider
+document.querySelectorAll("input[type='range']").forEach((slider,index)=>{
+    const span = document.getElementById("v"+(index+1));
+    slider.oninput = function(){
+        span.innerText = this.value;
+        renkDegistir(this);
+    }
+});
+
+// Yükle
+window.onload = function(){
+    alanlar.forEach(alan=>{
+        if(alan.type==="checkbox"){
+            alan.checked = localStorage.getItem("gun8_"+alan.id)==="true";
+        }else{
+            const kayit = localStorage.getItem("gun8_"+alan.id);
+            if(kayit!==null){
+                alan.value = kayit;
+            }
+        }
+    });
+
+    document.querySelectorAll("input[type='range']").forEach((slider,index)=>{
+        document.getElementById("v"+(index+1)).innerText = slider.value;
+        renkDegistir(slider);
+    });
+};
+
+// Otomatik kayıt
+alanlar.forEach(alan=>{
+    alan.addEventListener("input", function(){
+        if(this.type==="checkbox"){
+            localStorage.setItem("gun8_"+this.id,this.checked);
+        }else{
+            localStorage.setItem("gun8_"+this.id,this.value);
+        }
+    });
+});
+
+function kaydet(){
+    alanlar.forEach(alan=>{
+        if(alan.type==="checkbox"){
+            localStorage.setItem("gun8_"+alan.id,alan.checked);
+        }else{
+            localStorage.setItem("gun8_"+alan.id,alan.value);
+        }
+    });
+    document.getElementById("mesaj").innerText="✔ 8. Gün çalışması kaydedildi.";
+}
+
+</script>
+
+</body>
+</html>
