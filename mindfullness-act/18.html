@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>18. Gün – 3D Bilişsel Ayrışma</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f7fa;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:14px;
+    color:#666;
+    margin-bottom:25px;
+}
+
+/* TASK ROW */
+.tasks-row{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+}
+
+.task{
+    flex:1;
+    min-width:250px;
+    background:#ede7f6;
+    padding:15px;
+    border-radius:12px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+/* Sections */
+.section{
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.info-box{
+    background:#f1f8e9;
+    padding:15px;
+    border-radius:10px;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+textarea{
+    width:100%;
+    min-height:110px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:vertical;
+    font-size:14px;
+}
+
+button{
+    background:#7E57C2;
+    color:white;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    width:100%;
+}
+
+button:hover{
+    background:#673AB7;
+}
+
+.saved-msg{
+    text-align:center;
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>📘 18. Gün – 3D: Bilişsel Ayrışma</h1>
+<div class="subtitle">
+5 dakikalık defusion egzersizi · Hangi düşüncelerimden ayrışmayı başardım?
+</div>
+
+<!-- TASKS -->
+<div class="tasks-row">
+    <div class="task">⏳ 5 Dakikalık Defusion Egzersizi Yap</div>
+    <div class="task">🧠 Hangi düşüncelerimden ayrışmayı başardım?</div>
+</div>
+
+<!-- Tanım -->
+<div class="section">
+<div class="section-title">📘 Bilişsel Ayrışma Nedir?</div>
+<div class="info-box">
+Bilişsel ayrışma (defusion), düşüncelerimizi gerçeklik gibi değil, sadece zihinsel olaylar olarak görmeyi öğrenmektir.
+Amaç düşünceleri yok etmek değil, onlarla aramıza mesafe koymaktır.
+</div>
+</div>
+
+<!-- Egzersiz -->
+<div class="section">
+<div class="section-title">🕒 5 Dakikalık Defusion Egzersizi</div>
+<div class="info-box">
+1. Rahat bir pozisyonda otur.<br>
+2. Zihnine gelen düşünceleri fark et.<br>
+3. Her düşüncenin başına “Şu an zihnim bana diyor ki…” ekle.<br>
+4. Düşünceyi sadece gözlemle, değiştirmeye çalışma.<br>
+5. 5 dakika boyunca bu pratiği sürdür.
+</div>
+</div>
+
+<!-- Egzersiz Sonrası -->
+<div class="section">
+<div class="section-title">🔎 Egzersiz Sonrası Soru</div>
+<textarea id="egzersizSonrasi" placeholder="Hangi düşüncelerimden ayrışmayı başardım? Zorlandım mı?"></textarea>
+</div>
+
+<!-- Do / Don't -->
+<div class="section">
+<div class="section-title">⚖ Ayrışma Nedir, Ne Değildir?</div>
+<div class="info-box">
+✔ Düşünceyi fark etmek<br>
+✔ Düşünceye mesafe koymak<br>
+✔ Düşünceyi bastırmamak<br><br>
+✘ Düşünceyi yok etmeye çalışmak<br>
+✘ Kendini zorlamak<br>
+✘ Duygudan kaçmak
+</div>
+</div>
+
+<!-- Mini Pratik -->
+<div class="section">
+<div class="section-title">🌿 Günlük Mini Pratik</div>
+<textarea id="miniPratik" placeholder="Bugün günlük hayatımda ayrışmayı nerede uyguladım?"></textarea>
+</div>
+
+<!-- Gün Sonu -->
+<div class="section">
+<div class="section-title">🌙 Gün Sonu Değerlendirme</div>
+<textarea id="gunSonu" placeholder="Bugün defusion pratiği bana ne öğretti?"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="saved-msg" id="savedMessage"></div>
+
+</div>
+
+<script>
+const storageKey = "gun18_defusion";
+
+function kaydet(){
+    const data = {
+        egzersizSonrasi: document.getElementById("egzersizSonrasi").value,
+        miniPratik: document.getElementById("miniPratik").value,
+        gunSonu: document.getElementById("gunSonu").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.innerText = "✓ Kaydedildi!";
+    setTimeout(()=>{ msg.innerText=""; }, 3000);
+}
+
+function yukle(){
+    const savedData = localStorage.getItem(storageKey);
+    if(savedData){
+        const data = JSON.parse(savedData);
+        document.getElementById("egzersizSonrasi").value = data.egzersizSonrasi || "";
+        document.getElementById("miniPratik").value = data.miniPratik || "";
+        document.getElementById("gunSonu").value = data.gunSonu || "";
+    }
+}
+
+window.onload = yukle;
+</script>
+
+</body>
+</html>
