@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindfulness Günlük Formu – Gün 3</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+  h2 { color: #2E8B57; }
+  label { display: block; margin-top: 10px; font-weight: bold; }
+  input, textarea, select { width: 100%; padding: 6px; margin-top: 4px; }
+  .section { border: 1px solid #ccc; padding: 15px; margin-top: 20px; border-radius: 8px; }
+  button { margin-top: 15px; padding: 10px 20px; background-color: #2E8B57; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background-color: #246b45; }
+</style>
+</head>
+<body>
+
+<h1>Mindfulness & ACT – Günlük Form: Gün 3</h1>
+
+<form id="mindfulnessForm">
+
+  <div class="section">
+    <h2>1. 3 Dakikalık Farkındalık Gözlemi</h2>
+    <label>Gözleri kapatıp nefese odaklandım, gelen düşünceleri fark ettim:</label>
+    <textarea id="farkindalikGozlem"></textarea>
+
+    <label>Her düşünce sonrası oluşan duyguları gözlemledim:</label>
+    <textarea id="duyguGozlem"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>2. Düşünce–Duygu Haritası Çalışması</h2>
+    <label>Olay–Düşünce–Duygu–Davranış ilişkisini yazdım (En az 2 örnek):</label>
+    <textarea id="dusunceDuyguHarita"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>3. Gün Sonu Yansıması</h2>
+    <label>“Düşüncelerim ve duygularım arasındaki bağlantıyı fark ettim mi?”</label>
+    <select id="gunSonuYansimaSecim">
+      <option value="">Seçiniz</option>
+      <option value="Evet">Evet</option>
+      <option value="Kısmen">Kısmen</option>
+      <option value="Hayır">Hayır</option>
+    </select>
+
+    <label>Akşam Notları / Gözlemler:</label>
+    <textarea id="gunSonuNotlar"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>4. Mini ACT Perspektifi</h2>
+    <label>Düşüncelerin gerçek olmadığını ve duyguların geçici olduğunu gözlemledim:</label>
+    <textarea id="actPerspektif"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>5. Gün İçinde Bölümlere Ayrılmış Gözlem ve Notlar</h2>
+
+    <label>Sabah – Ruh Hali (0-10):</label>
+    <input type="number" id="sabahRuh" min="0" max="10">
+
+    <label>Sabah İlk Düşünceler ve Notlar:</label>
+    <textarea id="sabahNotlar"></textarea>
+
+    <label>Öğlen – 3 Dakikalık Farkındalık Egzersizi ve Duygular:</label>
+    <textarea id="oglenNotlar"></textarea>
+
+    <label>Akşam – Gün Sonu Düşünce-Duygu Haritası ve Notlar:</label>
+    <textarea id="aksamNotlar"></textarea>
+
+    <label>Yatarken – Mini ACT Perspektifi ile Zihinsel Gözlemler ve Kapanış Cümlesi:</label>
+    <textarea id="yatarkenNotlar"></textarea>
+  </div>
+
+  <button type="button" onclick="kaydet()">💾 Kaydet</button>
+  <button type="button" onclick="indirJSON()">📥 JSON İndir</button>
+</form>
+
+<script>
+function kaydet() {
+  const formData = {
+    farkindalik: {
+      gozlem: document.getElementById('farkindalikGozlem').value,
+      duygu: document.getElementById('duyguGozlem').value
+    },
+    harita: document.getElementById('dusunceDuyguHarita').value,
+    gunSonu: {
+      secim: document.getElementById('gunSonuYansimaSecim').value,
+      notlar: document.getElementById('gunSonuNotlar').value
+    },
+    act: document.getElementById('actPerspektif').value,
+    bolumler: {
+      sabah: {
+        ruhHali: document.getElementById('sabahRuh').value,
+        notlar: document.getElementById('sabahNotlar').value
+      },
+      oglen: document.getElementById('oglenNotlar').value,
+      aksam: document.getElementById('aksamNotlar').value,
+      yatarken: document.getElementById('yatarkenNotlar').value
+    }
+  };
+  
+  localStorage.setItem('gun3_mindfulness', JSON.stringify(formData));
+  alert('Gün 3 günlük başarıyla kaydedildi!');
+}
+
+function indirJSON() {
+  const data = localStorage.getItem('gun3_mindfulness');
+  if(!data) { alert('Önce kaydetmeniz gerekiyor!'); return; }
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download","gun3_mindfulness.json");
+  dlAnchor.click();
+}
+
+// Sayfa yüklendiğinde LocalStorage'daki veriyi doldurma
+window.onload = () => {
+  const data = JSON.parse(localStorage.getItem('gun3_mindfulness') || '{}');
+  if(data.farkindalik) {
+    document.getElementById('farkindalikGozlem').value = data.farkindalik.gozlem || '';
+    document.getElementById('duyguGozlem').value = data.farkindalik.duygu || '';
+  }
+  document.getElementById('dusunceDuyguHarita').value = data.harita || '';
+  if(data.gunSonu) {
+    document.getElementById('gunSonuYansimaSecim').value = data.gunSonu.secim || '';
+    document.getElementById('gunSonuNotlar').value = data.gunSonu.notlar || '';
+  }
+  document.getElementById('actPerspektif').value = data.act || '';
+  if(data.bolumler) {
+    document.getElementById('sabahRuh').value = data.bolumler.sabah.ruhHali || '';
+    document.getElementById('sabahNotlar').value = data.bolumler.sabah.notlar || '';
+    document.getElementById('oglenNotlar').value = data.bolumler.oglen || '';
+    document.getElementById('aksamNotlar').value = data.bolumler.aksam || '';
+    document.getElementById('yatarkenNotlar').value = data.bolumler.yatarken || '';
+  }
+};
+</script>
+
+</body>
+</html>
