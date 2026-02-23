@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindfulness Günlük Formu – Gün 1</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+  h2 { color: #2E8B57; }
+  label { display: block; margin-top: 10px; font-weight: bold; }
+  input, textarea, select { width: 100%; padding: 6px; margin-top: 4px; }
+  .section { border: 1px solid #ccc; padding: 15px; margin-top: 20px; border-radius: 8px; }
+  button { margin-top: 15px; padding: 10px 20px; background-color: #2E8B57; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background-color: #246b45; }
+</style>
+</head>
+<body>
+
+<h1>Mindfulness & ACT – Günlük Form: Gün 1</h1>
+
+<form id="mindfulnessForm">
+
+  <div class="section">
+    <h2>1. Sabah Pratiği</h2>
+    <label>Ruh Halim (0-10):</label>
+    <input type="number" id="sabahRuh" min="0" max="10">
+    
+    <label>Günün İlk Düşüncesi:</label>
+    <textarea id="sabahDusunce"></textarea>
+    
+    <label>Bedenimde Hissedilenler:</label>
+    <textarea id="sabahBeden"></textarea>
+    
+    <label>1 Dakika Nefes Gözlemi Yaptım:</label>
+    <select id="sabahNefes">
+      <option value="">Seçiniz</option>
+      <option value="Evet">Evet</option>
+      <option value="Hayır">Hayır</option>
+    </select>
+    
+    <label>Sabah Notları / Gözlemler:</label>
+    <textarea id="sabahNotlar"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>2. Öğlen Pratiği</h2>
+    <label>Otomatik Pilot Halinde Farkındalık Yaşadım:</label>
+    <select id="oglenPilot">
+      <option value="">Seçiniz</option>
+      <option value="Evet">Evet</option>
+      <option value="Hayır">Hayır</option>
+    </select>
+
+    <label>Bilinçli Nefes Sayısı:</label>
+    <input type="number" id="oglenNefes" min="0">
+
+    <label>Öğle Notları / Gözlemler:</label>
+    <textarea id="oglenNotlar"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>3. Akşam Pratiği</h2>
+    <label>Günün En Çok Tekrar Eden Düşüncesi:</label>
+    <textarea id="aksamDusunce"></textarea>
+    
+    <label>Bunu Yargısız Gözlemledim:</label>
+    <select id="aksamYargi">
+      <option value="">Seçiniz</option>
+      <option value="Evet">Evet</option>
+      <option value="Kısmen">Kısmen</option>
+      <option value="Hayır">Hayır</option>
+    </select>
+
+    <label>Duygusal Durum (0-10):</label>
+    <input type="number" id="aksamDuygu" min="0" max="10">
+    
+    <label>Akşam Notları / Gözlemler:</label>
+    <textarea id="aksamNotlar"></textarea>
+  </div>
+
+  <div class="section">
+    <h2>4. Yatarken Pratiği</h2>
+    <label>1 Dakika Nefes veya Beden Taraması Yaptım:</label>
+    <select id="yatarkenNefes">
+      <option value="">Seçiniz</option>
+      <option value="Evet">Evet</option>
+      <option value="Hayır">Hayır</option>
+    </select>
+    
+    <label>Gün İçinde Fark Ettiğim Küçük Bir An:</label>
+    <textarea id="yatarkenAn"></textarea>
+
+    <label>Günün Kapanış Cümlesi / Kendime Mesajım:</label>
+    <textarea id="kapanis"></textarea>
+  </div>
+
+  <button type="button" onclick="kaydet()">💾 Kaydet</button>
+  <button type="button" onclick="indirJSON()">📥 JSON İndir</button>
+</form>
+
+<script>
+function kaydet() {
+  const formData = {
+    sabah: {
+      ruhHali: document.getElementById('sabahRuh').value,
+      dusunce: document.getElementById('sabahDusunce').value,
+      beden: document.getElementById('sabahBeden').value,
+      nefes: document.getElementById('sabahNefes').value,
+      notlar: document.getElementById('sabahNotlar').value
+    },
+    oglen: {
+      pilot: document.getElementById('oglenPilot').value,
+      nefesSayisi: document.getElementById('oglenNefes').value,
+      notlar: document.getElementById('oglenNotlar').value
+    },
+    aksam: {
+      dusunce: document.getElementById('aksamDusunce').value,
+      yargi: document.getElementById('aksamYargi').value,
+      duygu: document.getElementById('aksamDuygu').value,
+      notlar: document.getElementById('aksamNotlar').value
+    },
+    yatarken: {
+      nefes: document.getElementById('yatarkenNefes').value,
+      an: document.getElementById('yatarkenAn').value,
+      kapanis: document.getElementById('kapanis').value
+    }
+  };
+  
+  localStorage.setItem('gun1_mindfulness', JSON.stringify(formData));
+  alert('Günlük başarıyla kaydedildi!');
+}
+
+function indirJSON() {
+  const data = localStorage.getItem('gun1_mindfulness');
+  if(!data) { alert('Önce kaydetmeniz gerekiyor!'); return; }
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download","gun1_mindfulness.json");
+  dlAnchor.click();
+}
+
+// Sayfa yüklendiğinde varsa LocalStorage'daki veriyi doldurma
+window.onload = () => {
+  const data = JSON.parse(localStorage.getItem('gun1_mindfulness') || '{}');
+  if(data.sabah) {
+    document.getElementById('sabahRuh').value = data.sabah.ruhHali || '';
+    document.getElementById('sabahDusunce').value = data.sabah.dusunce || '';
+    document.getElementById('sabahBeden').value = data.sabah.beden || '';
+    document.getElementById('sabahNefes').value = data.sabah.nefes || '';
+    document.getElementById('sabahNotlar').value = data.sabah.notlar || '';
+  }
+  if(data.oglen) {
+    document.getElementById('oglenPilot').value = data.oglen.pilot || '';
+    document.getElementById('oglenNefes').value = data.oglen.nefesSayisi || '';
+    document.getElementById('oglenNotlar').value = data.oglen.notlar || '';
+  }
+  if(data.aksam) {
+    document.getElementById('aksamDusunce').value = data.aksam.dusunce || '';
+    document.getElementById('aksamYargi').value = data.aksam.yargi || '';
+    document.getElementById('aksamDuygu').value = data.aksam.duygu || '';
+    document.getElementById('aksamNotlar').value = data.aksam.notlar || '';
+  }
+  if(data.yatarken) {
+    document.getElementById('yatarkenNefes').value = data.yatarken.nefes || '';
+    document.getElementById('yatarkenAn').value = data.yatarken.an || '';
+    document.getElementById('kapanis').value = data.yatarken.kapanis || '';
+  }
+};
+</script>
+
+</body>
+</html>
