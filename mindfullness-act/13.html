@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13. Gün – Esnek Davranış Pratiği</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    padding: 20px;
+}
+
+.container{
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.section{
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:8px;
+}
+
+textarea{
+    width:100%;
+    min-height:90px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    resize:vertical;
+    font-size:14px;
+}
+
+button{
+    background:#2196F3;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    width:100%;
+}
+
+button:hover{
+    background:#1976D2;
+}
+
+.saved-msg{
+    text-align:center;
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>📘 13. Gün – Esnek Davranış Pratiği</h1>
+
+<div class="section">
+<label>1️⃣ Seçtiğim Senaryo</label>
+<textarea id="senaryo"></textarea>
+</div>
+
+<div class="section">
+<label>2️⃣ Otomatik Tepkim</label>
+<textarea id="otomatik"></textarea>
+</div>
+
+<div class="section">
+<label>3️⃣ Denediğim Esnek Davranış</label>
+<textarea id="esnek"></textarea>
+</div>
+
+<div class="section">
+<label>4️⃣ Sonuç</label>
+<textarea id="sonuc"></textarea>
+</div>
+
+<div class="section">
+<label>5️⃣ Öğrendiğim Şey</label>
+<textarea id="ogrendim"></textarea>
+</div>
+
+<div class="section">
+<label>🔔 Hatırlatma</label>
+<textarea id="hatirlatma"></textarea>
+</div>
+
+<div class="section">
+<label>📝 Gün Sonu Yansıtma</label>
+<textarea id="yansitma"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="saved-msg" id="savedMessage"></div>
+
+</div>
+
+<script>
+const storageKey = "gun13_esnek_pratik";
+
+function kaydet(){
+    const data = {
+        senaryo: document.getElementById("senaryo").value,
+        otomatik: document.getElementById("otomatik").value,
+        esnek: document.getElementById("esnek").value,
+        sonuc: document.getElementById("sonuc").value,
+        ogrendim: document.getElementById("ogrendim").value,
+        hatirlatma: document.getElementById("hatirlatma").value,
+        yansitma: document.getElementById("yansitma").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.innerText = "✔ Kayıt başarıyla yapıldı!";
+    setTimeout(()=>{ msg.innerText=""; }, 3000);
+}
+
+function yukle(){
+    const savedData = localStorage.getItem(storageKey);
+    if(savedData){
+        const data = JSON.parse(savedData);
+        document.getElementById("senaryo").value = data.senaryo || "";
+        document.getElementById("otomatik").value = data.otomatik || "";
+        document.getElementById("esnek").value = data.esnek || "";
+        document.getElementById("sonuc").value = data.sonuc || "";
+        document.getElementById("ogrendim").value = data.ogrendim || "";
+        document.getElementById("hatirlatma").value = data.hatirlatma || "";
+        document.getElementById("yansitma").value = data.yansitma || "";
+    }
+}
+
+window.onload = yukle;
+</script>
+
+</body>
+</html>
