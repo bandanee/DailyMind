@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7. Gün – Haftalık Özet ve Değerlendirme</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f6fb;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+h1{
+    text-align:center;
+}
+.section{
+    margin-bottom:30px;
+}
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:12px;
+}
+textarea{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    min-height:100px;
+    resize:vertical;
+}
+input[type="range"]{
+    width:100%;
+}
+.scale-value{
+    font-weight:bold;
+    text-align:right;
+}
+.checkbox-group{
+    margin-top:10px;
+}
+.checkbox-group label{
+    font-weight:normal;
+    display:block;
+}
+button{
+    width:100%;
+    padding:15px;
+    background:#2b7cff;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+}
+button:hover{
+    background:#1f5edc;
+}
+.success{
+    text-align:center;
+    color:green;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>7. Gün – Haftalık Farkındalık Değerlendirmesi</h1>
+
+<div class="section">
+<h3>1️⃣ Hafta Boyunca Kazanılan Farkındalıklar</h3>
+<textarea id="farkindalik"></textarea>
+</div>
+
+<div class="section">
+<h3>2️⃣ Zorlandığım Alanlar</h3>
+<textarea id="zorlanma"></textarea>
+</div>
+
+<div class="section">
+<h3>3️⃣ Öğrendiklerim ve İçgörülerim</h3>
+<textarea id="icgoru"></textarea>
+</div>
+
+<div class="section">
+<h3>4️⃣ Mini Öz Değerlendirme (0–10)</h3>
+
+<label>Farkındalık Düzeyim: <span id="v1">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s1">
+
+<label>Dikkat Kontrolüm: <span id="v2">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s2">
+
+<label>Otomatik Pilotu Fark Etme: <span id="v3">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s3">
+
+<label>Pratikleri Sürdürme Motivasyonu: <span id="v4">5</span></label>
+<input type="range" min="0" max="10" value="5" id="s4">
+
+</div>
+
+<div class="section">
+<h3>5️⃣ Haftalık Psikolojik Kazanımlar</h3>
+
+<div class="checkbox-group">
+<label><input type="checkbox" id="k1"> Zihnin otomatik çalıştığını fark etmek</label>
+<label><input type="checkbox" id="k2"> Gözlemleyen pozisyona geçmeye başlamak</label>
+<label><input type="checkbox" id="k3"> Dikkati bilinçli yönlendirebilmek</label>
+<label><input type="checkbox" id="k4"> Rutinleri mindfulness pratiğine dönüştürebilmek</label>
+<label><input type="checkbox" id="k5"> Zihinsel esnekliğin temelini atmak</label>
+</div>
+
+</div>
+
+<div class="section">
+<h3>6️⃣ Gelecek Hafta İçin Düşünce Egzersizi</h3>
+<p><em>“Eğer düşüncelerimi gözlemleyebiliyorsam, onlara her zaman inanmak zorunda mıyım?”</em></p>
+<textarea id="gecis"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="success" id="mesaj"></div>
+
+</div>
+
+<script>
+
+const alanlar = document.querySelectorAll("textarea, input[type='range'], input[type='checkbox']");
+
+// Slider değer gösterimi
+document.querySelectorAll("input[type='range']").forEach((slider, index)=>{
+    const span = document.getElementById("v"+(index+1));
+    slider.oninput = function(){
+        span.innerText = this.value;
+        renkDegistir(this);
+    }
+});
+
+// Renkli mood-meter
+function renkDegistir(slider){
+    const value = slider.value;
+    const hue = (value * 12); // 0 kırmızı → 120 yeşil
+    slider.style.background = "linear-gradient(to right, hsl("+hue+",70%,50%) "+value*10+"%, #ddd "+value*10+"%)";
+}
+
+// Sayfa yüklenince verileri getir
+window.onload = function(){
+    alanlar.forEach(alan=>{
+        if(alan.type === "checkbox"){
+            alan.checked = localStorage.getItem("gun7_"+alan.id) === "true";
+        }else{
+            const kayit = localStorage.getItem("gun7_"+alan.id);
+            if(kayit !== null){
+                alan.value = kayit;
+            }
+        }
+    });
+
+    document.querySelectorAll("input[type='range']").forEach((slider, index)=>{
+        document.getElementById("v"+(index+1)).innerText = slider.value;
+        renkDegistir(slider);
+    });
+};
+
+// Otomatik kaydet
+alanlar.forEach(alan=>{
+    alan.addEventListener("input", function(){
+        if(this.type === "checkbox"){
+            localStorage.setItem("gun7_"+this.id, this.checked);
+        }else{
+            localStorage.setItem("gun7_"+this.id, this.value);
+        }
+    });
+});
+
+function kaydet(){
+    alanlar.forEach(alan=>{
+        if(alan.type === "checkbox"){
+            localStorage.setItem("gun7_"+alan.id, alan.checked);
+        }else{
+            localStorage.setItem("gun7_"+alan.id, alan.value);
+        }
+    });
+    document.getElementById("mesaj").innerText="✔ Haftalık değerlendirme kaydedildi.";
+}
+
+</script>
+
+</body>
+</html>
