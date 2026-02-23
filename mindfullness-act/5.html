@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindfulness & ACT – Gün 5</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; max-width: 900px; }
+  h1 { color: #2E8B57; }
+  h2 { color: #246b45; }
+  label { display: block; margin-top: 10px; font-weight: bold; }
+  textarea, input, select { width: 100%; padding: 8px; margin-top: 4px; }
+  .section { border: 1px solid #ccc; padding: 15px; margin-top: 20px; border-radius: 8px; }
+  button { margin-top: 15px; padding: 10px 20px; background-color: #2E8B57; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background-color: #1e5636; }
+</style>
+</head>
+<body>
+
+<h1>Mindfulness & ACT – Gün 5</h1>
+
+<form>
+
+<div class="section">
+<h2>1. Ortam Hazırlama ve Nefes Egzersizi</h2>
+<label>Sessiz ortam ve 2–3 bilinçli nefes sonrası gözlemlerim:</label>
+<textarea id="hazirlik"></textarea>
+</div>
+
+<div class="section">
+<h2>2. 10 Dakikalık Kesintisiz Yazı</h2>
+<label>Başlık: “Bugün zihinsel farkındalıkla fark ettiğim üç şey”</label>
+<textarea id="kesintisizYazi" rows="10"></textarea>
+</div>
+
+<div class="section">
+<h2>3. Farkındalık Soruları</h2>
+<label>Gün içinde fark ettiğim düşünce:</label>
+<textarea id="dusunce"></textarea>
+
+<label>En çok tekrar eden düşünce:</label>
+<textarea id="tekrarDusunce"></textarea>
+
+<label>Fark ettiğim duygu:</label>
+<textarea id="duygu"></textarea>
+
+<label>Bu duyguyu bedenimde nerede hissettim?</label>
+<textarea id="beden"></textarea>
+
+<label>Otomatik tepkim (Bilinçli mi / Otomatik mi?):</label>
+<textarea id="tepki"></textarea>
+</div>
+
+<div class="section">
+<h2>4. Derinleştirme</h2>
+<label>“Bugün zihnimle ilgili yeni ne fark ettim?”</label>
+<textarea id="derinlestirme"></textarea>
+</div>
+
+<div class="section">
+<h2>5. Mini ACT Farkındalık Analizi</h2>
+<label>Ben ≠ Düşüncelerim</label>
+<textarea id="act1"></textarea>
+
+<label>Ben ≠ Duygularım</label>
+<textarea id="act2"></textarea>
+
+<label>Ben = Gözlemleyen taraf</label>
+<textarea id="act3"></textarea>
+</div>
+
+<div class="section">
+<h2>6. Haftalık Mini Ödev</h2>
+<label>Bu çalışmayı 3 gün üst üste tekrar etme deneyimim ve tekrar eden düşünce kalıpları:</label>
+<textarea id="haftalikOdev"></textarea>
+</div>
+
+<button type="button" onclick="kaydet()">💾 Kaydet</button>
+<button type="button" onclick="indirJSON()">📥 JSON İndir</button>
+
+</form>
+
+<script>
+function kaydet() {
+  const data = {
+    hazirlik: document.getElementById("hazirlik").value,
+    kesintisizYazi: document.getElementById("kesintisizYazi").value,
+    dusunce: document.getElementById("dusunce").value,
+    tekrarDusunce: document.getElementById("tekrarDusunce").value,
+    duygu: document.getElementById("duygu").value,
+    beden: document.getElementById("beden").value,
+    tepki: document.getElementById("tepki").value,
+    derinlestirme: document.getElementById("derinlestirme").value,
+    act1: document.getElementById("act1").value,
+    act2: document.getElementById("act2").value,
+    act3: document.getElementById("act3").value,
+    haftalikOdev: document.getElementById("haftalikOdev").value
+  };
+
+  localStorage.setItem("gun5_mindfulness", JSON.stringify(data));
+  alert("Gün 5 başarıyla kaydedildi!");
+}
+
+function indirJSON() {
+  const data = localStorage.getItem("gun5_mindfulness");
+  if(!data) { alert("Önce kaydetmeniz gerekiyor!"); return; }
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download","gun5_mindfulness.json");
+  dlAnchor.click();
+}
+
+window.onload = () => {
+  const data = JSON.parse(localStorage.getItem("gun5_mindfulness") || "{}");
+  Object.keys(data).forEach(id => {
+    if(document.getElementById(id)){
+      document.getElementById(id).value = data[id];
+    }
+  });
+};
+</script>
+
+</body>
+</html>
