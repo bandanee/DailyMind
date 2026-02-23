@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23. Gün – Duyguların Doğasını Gözlemlemek</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f9f7f4;
+    margin:0;
+    padding:20px;
+    color:#333;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    color:#b56576;
+}
+
+.task-chip{
+    display:inline-block;
+    background:#ffe5ec;
+    padding:8px 14px;
+    border-radius:20px;
+    margin:5px 5px 10px 0;
+    font-size:14px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section h2{
+    color:#b56576;
+    font-size:18px;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-top:8px;
+    resize:vertical;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#b56576;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#944e5d;
+}
+
+.saved{
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>💛 4B – Duyguların Doğasını Gözlemlemek</h1>
+<p><strong>23. Gün</strong> – 3–5 dakikalık duygu gözlemi pratiği</p>
+
+<div>
+<span class="task-chip">🕒 3–5 dakikalık duygu gözlemi pratiği yap</span>
+<span class="task-chip">🔎 Bugün hangi duygularımı fark ettim?</span>
+</div>
+
+<div class="section">
+<h2>📘 Duyguların Doğasını Gözlemlemek</h2>
+<p>
+Duygular geçicidir; gelir ve giderler. Onları bastırmak ya da değiştirmeye çalışmak yerine,
+nazikçe gözlemlemek duygusal farkındalığı artırır. Bu çalışma, duygularınızı yargılamadan
+fark etmeyi amaçlar.
+</p>
+</div>
+
+<div class="section">
+<h2>🕒 3–5 Dakikalık Duygu Gözlemi Pratiği</h2>
+<ol>
+<li>Rahat bir şekilde oturun ve birkaç derin nefes alın.</li>
+<li>Şu an hissettiğiniz duyguyu fark edin.</li>
+<li>Bu duygunun bedeninizde nerede hissedildiğini gözlemleyin.</li>
+<li>Duyguyu değiştirmeye çalışmadan sadece izleyin.</li>
+<li>“Bu duygu şu an burada” diyerek kabul edin.</li>
+</ol>
+</div>
+
+<div class="section">
+<h2>🔎 Kendinize Sorular</h2>
+<textarea id="emotionReflection" placeholder="Bugün hangi duyguları hissettim? Hangi durumlar tetikledi?"></textarea>
+</div>
+
+<div class="section">
+<h2>🌿 Öneriler</h2>
+<textarea id="emotionSuggestions" placeholder="Duygularımı gözlemleme pratiğini günlük hayatta nasıl sürdürebilirim?"></textarea>
+</div>
+
+<button onclick="saveData()">💾 KAYDET</button>
+<div class="saved" id="savedMessage">✓ Kaydedildi!</div>
+
+</div>
+
+<script>
+const storageKey = "day23_emotion_observation";
+
+function saveData(){
+    const data = {
+        emotionReflection: document.getElementById("emotionReflection").value,
+        emotionSuggestions: document.getElementById("emotionSuggestions").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.style.display = "block";
+
+    setTimeout(()=>{
+        msg.style.display = "none";
+    },2000);
+}
+
+function loadData(){
+    const saved = localStorage.getItem(storageKey);
+    if(saved){
+        const data = JSON.parse(saved);
+        document.getElementById("emotionReflection").value = data.emotionReflection || "";
+        document.getElementById("emotionSuggestions").value = data.emotionSuggestions || "";
+    }
+}
+
+window.onload = loadData;
+</script>
+
+</body>
+</html>
