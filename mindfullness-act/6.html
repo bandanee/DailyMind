@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6. Gün – Günlük Rutinlerde Farkındalık</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fb;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+h1{
+    text-align:center;
+}
+.section{
+    margin-bottom:30px;
+}
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:10px;
+}
+textarea, input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+button{
+    width:100%;
+    padding:15px;
+    background:#2b7cff;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+}
+button:hover{
+    background:#1f5edc;
+}
+.success{
+    text-align:center;
+    color:green;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>6. Gün – Günlük Rutinlerde Farkındalık</h1>
+
+<div class="section">
+<h3>1️⃣ Rutin Seçimi ve Hazırlık</h3>
+
+<label>Seçtiğim rutin aktivite:</label>
+<input type="text" id="rutin">
+
+<label>2–3 gün bilinçli uygulama planım:</label>
+<textarea id="plan"></textarea>
+
+<label>Başlamadan önce hazırlık notlarım:</label>
+<textarea id="hazirlik"></textarea>
+</div>
+
+<div class="section">
+<h3>2️⃣ Bilinçli Uygulama Gözlemleri</h3>
+
+<label>Bedensel farkındalık (dokunma, tat, ses, koku):</label>
+<textarea id="beden"></textarea>
+
+<label>Zihnim dağıldığında ne oldu?</label>
+<textarea id="zihin"></textarea>
+
+<label>Hızlı yapma eğilimimi fark ettim mi?</label>
+<textarea id="hiz"></textarea>
+</div>
+
+<div class="section">
+<h3>3️⃣ Günlük Kısa Yazı</h3>
+
+<label>Bugün hangi rutin aktivitemi bilinçli yaptım?</label>
+<textarea id="gunluk1"></textarea>
+
+<label>Otomatik pilotu ne zaman fark ettim?</label>
+<textarea id="gunluk2"></textarea>
+
+<label>Zihnim ne kadar dağıldı?</label>
+<textarea id="gunluk3"></textarea>
+
+<label>Bilinçli yapmak zor muydu?</label>
+<textarea id="gunluk4"></textarea>
+
+<label>Duygusal olarak ne fark ettim?</label>
+<textarea id="gunluk5"></textarea>
+
+<label>Süreç sonunda nasıl hissettim?</label>
+<textarea id="gunluk6"></textarea>
+</div>
+
+<div class="section">
+<h3>4️⃣ 3 Gün Sonunda Değerlendirme</h3>
+
+<label>Aynı rutini bilinçli yapmak kolaylaştı mı?</label>
+<textarea id="deger1"></textarea>
+
+<label>Farkındalık günlük hayata taşındı mı?</label>
+<textarea id="deger2"></textarea>
+
+<label>Otomatik davranışları daha erken fark ediyor muyum?</label>
+<textarea id="deger3"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="success" id="mesaj"></div>
+
+</div>
+
+<script>
+
+const alanlar = document.querySelectorAll("input, textarea");
+
+// Sayfa açılınca yükle
+window.onload = function(){
+    alanlar.forEach(alan=>{
+        const kayit = localStorage.getItem("gun6_" + alan.id);
+        if(kayit){
+            alan.value = kayit;
+        }
+    });
+};
+
+// Otomatik kaydet
+alanlar.forEach(alan=>{
+    alan.addEventListener("input", function(){
+        localStorage.setItem("gun6_" + alan.id, alan.value);
+    });
+});
+
+function kaydet(){
+    alanlar.forEach(alan=>{
+        localStorage.setItem("gun6_" + alan.id, alan.value);
+    });
+    document.getElementById("mesaj").innerText="✔ Tüm veriler kaydedildi.";
+}
+
+</script>
+
+</body>
+</html>
