@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14. Gün – Hafta Kapanışı ve Uygulama Planı</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #f3f7fb;
+    padding: 20px;
+}
+
+.container{
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section{
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:8px;
+}
+
+textarea{
+    width:100%;
+    min-height:100px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:vertical;
+    font-size:14px;
+}
+
+button{
+    background:#673AB7;
+    color:white;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    width:100%;
+}
+
+button:hover{
+    background:#5E35B1;
+}
+
+.saved-msg{
+    text-align:center;
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>📘 14. Gün – Hafta Kapanışı & Uygulama Planı</h1>
+
+<div class="section">
+<label>🎯 Bu Haftaki Hedeflerim</label>
+<textarea id="hedefler"></textarea>
+</div>
+
+<div class="section">
+<label>🗂 Uygulama Planım (Adım Adım)</label>
+<textarea id="plan"></textarea>
+</div>
+
+<div class="section">
+<label>🔁 Mini Günlük Döngü (Her Gün Yapacaklarım)</label>
+<textarea id="gunluk"></textarea>
+</div>
+
+<div class="section">
+<label>💬 Uygulama Cevabım (Haftalık Refleksiyon)</label>
+<textarea id="cevap"></textarea>
+</div>
+
+<div class="section">
+<label>🔔 Haftalık Hatırlatmalar</label>
+<textarea id="hatirlatma"></textarea>
+</div>
+
+<div class="section">
+<label>🌙 Gün Sonu Değerlendirme (2 Dakika)</label>
+<textarea id="gunsonu"></textarea>
+</div>
+
+<div class="section">
+<label>👏 Kendimi Takdir Ediyorum Çünkü...</label>
+<textarea id="takdir"></textarea>
+</div>
+
+<button onclick="kaydet()">💾 KAYDET</button>
+<div class="saved-msg" id="savedMessage"></div>
+
+</div>
+
+<script>
+const storageKey = "gun14_hafta_kapanisi";
+
+function kaydet(){
+    const data = {
+        hedefler: document.getElementById("hedefler").value,
+        plan: document.getElementById("plan").value,
+        gunluk: document.getElementById("gunluk").value,
+        cevap: document.getElementById("cevap").value,
+        hatirlatma: document.getElementById("hatirlatma").value,
+        gunsonu: document.getElementById("gunsonu").value,
+        takdir: document.getElementById("takdir").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.innerText = "✔ Haftalık plan başarıyla kaydedildi!";
+    setTimeout(()=>{ msg.innerText=""; }, 3000);
+}
+
+function yukle(){
+    const savedData = localStorage.getItem(storageKey);
+    if(savedData){
+        const data = JSON.parse(savedData);
+        document.getElementById("hedefler").value = data.hedefler || "";
+        document.getElementById("plan").value = data.plan || "";
+        document.getElementById("gunluk").value = data.gunluk || "";
+        document.getElementById("cevap").value = data.cevap || "";
+        document.getElementById("hatirlatma").value = data.hatirlatma || "";
+        document.getElementById("gunsonu").value = data.gunsonu || "";
+        document.getElementById("takdir").value = data.takdir || "";
+    }
+}
+
+window.onload = yukle;
+</script>
+
+</body>
+</html>
