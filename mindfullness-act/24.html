@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24. Gün – Kendi Duygularına Alan Açmak</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f8fb;
+    margin:0;
+    padding:20px;
+    color:#333;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    color:#3f6c8a;
+}
+
+.task-chip{
+    display:inline-block;
+    background:#e0f0ff;
+    padding:8px 14px;
+    border-radius:20px;
+    margin:5px 5px 10px 0;
+    font-size:14px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section h2{
+    color:#3f6c8a;
+    font-size:18px;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-top:8px;
+    resize:vertical;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#3f6c8a;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2f556d;
+}
+
+.saved{
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🌊 4C – Kendi Duygularına Alan Açmak</h1>
+<p><strong>24. Gün</strong> – 5 dakikalık alan açma meditasyonu</p>
+
+<div>
+<span class="task-chip">🕒 5 dakikalık alan açma meditasyonu yap</span>
+<span class="task-chip">🔎 Duygularımı yargılamadan nasıl gözlemledim?</span>
+</div>
+
+<div class="section">
+<h2>📘 Duygulara Alan Açmak</h2>
+<p>
+Duygulara alan açmak, onları bastırmak ya da değiştirmeye çalışmak yerine,
+nazikçe fark etmek ve var olmalarına izin vermektir. Bu yaklaşım,
+duygularla mücadele etmek yerine onlarla birlikte kalmayı öğretir.
+</p>
+</div>
+
+<div class="section">
+<h2>🕒 5 Dakikalık Alan Açma Meditasyonu</h2>
+<ol>
+<li>Rahat bir pozisyonda oturun ve nefesinize odaklanın.</li>
+<li>Şu an hissettiğiniz duyguyu fark edin.</li>
+<li>Bu duygunun bedeninizdeki yerini gözlemleyin.</li>
+<li>Onu değiştirmeye çalışmadan sadece alan açın.</li>
+<li>“Bu duygu burada ve ben ona yer açıyorum” diyerek birkaç nefes alın.</li>
+</ol>
+</div>
+
+<div class="section">
+<h2>🔎 Kendinize Sorular</h2>
+<textarea id="reflection" placeholder="Duygularımı yargılamadan nasıl gözlemledim? Neler fark ettim?"></textarea>
+</div>
+
+<div class="section">
+<h2>🌿 Öneriler</h2>
+<textarea id="suggestions" placeholder="Alan açma pratiğini günlük yaşamımda nasıl sürdürebilirim?"></textarea>
+</div>
+
+<button onclick="saveData()">💾 KAYDET</button>
+<div class="saved" id="savedMessage">✓ Kaydedildi!</div>
+
+</div>
+
+<script>
+const storageKey = "day24_emotional_space";
+
+function saveData(){
+    const data = {
+        reflection: document.getElementById("reflection").value,
+        suggestions: document.getElementById("suggestions").value
+    };
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    const msg = document.getElementById("savedMessage");
+    msg.style.display = "block";
+
+    setTimeout(()=>{
+        msg.style.display = "none";
+    },2000);
+}
+
+function loadData(){
+    const saved = localStorage.getItem(storageKey);
+    if(saved){
+        const data = JSON.parse(saved);
+        document.getElementById("reflection").value = data.reflection || "";
+        document.getElementById("suggestions").value = data.suggestions || "";
+    }
+}
+
+window.onload = loadData;
+</script>
+
+</body>
+</html>
