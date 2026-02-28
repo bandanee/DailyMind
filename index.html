@@ -197,7 +197,7 @@ fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.htm
 const owner = "bandanee";
 const repo = "DailyMind";
 
-// README içinden Title, Description, Keywords parse et
+// README parse
 function parseReadme(content, dirName) {
   const titleMatch = content.match(/^#\s+(.*)/m);
   const descMatch = content.match(/Description:\s*(.*)/i);
@@ -210,7 +210,6 @@ function parseReadme(content, dirName) {
   };
 }
 
-// Fallback metadata
 function generateMeta(dirName) {
   return {
     title: dirName.replace(/[-_]/g, ' '),
@@ -219,71 +218,73 @@ function generateMeta(dirName) {
   };
 }
 
-// Root'taki arsiv* klasörleri al
-async function fetchFolders() {
-  try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents`);
-    const items = await res.json();
+// Root’taki arsiv* klasörlerini bul
+async function fetchArchiveRoots() {
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents`);
+  const items = await res.json();
 
-    return items.filter(item =>
-      item.type === "dir" &&
-      item.name.toLowerCase().startsWith("arsiv")
-    );
+  return items.filter(item =>
+    item.type === "dir" &&
+    item.name.toLowerCase().startsWith("arsiv")
+  );
+}
 
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+// Bir arsiv klasörünün içindekileri al
+async function fetchArchiveContents(archiveFolder) {
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${archiveFolder}`);
+  const items = await res.json();
+
+  return items.filter(item => item.type === "dir");
 }
 
 // README çek
-async function fetchReadme(dirName) {
+async function fetchReadme(path, dirName) {
   try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${dirName}/README.md`);
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}/README.md`);
     if (!res.ok) return null;
 
     const data = await res.json();
     const content = atob(data.content);
     return parseReadme(content, dirName);
 
-  } catch (e) {
+  } catch {
     return null;
   }
 }
 
 async function init() {
-  const folders = await fetchFolders();
   const tbody = $("#archiveTable tbody");
 
-  // Sayısal sıraya göre sırala (arsiv1, arsiv2, arsiv10 doğru)
-  folders.sort((a, b) => {
-    const getNum = name => parseInt(name.replace("arsiv", "")) || 0;
-    return getNum(a.name) - getNum(b.name);
-  });
+  const archiveRoots = await fetchArchiveRoots();
 
-  for (const dir of folders) {
-    let meta = await fetchReadme(dir.name);
+  for (const archiveRoot of archiveRoots) {
 
-    if (!meta) {
-      meta = generateMeta(dir.name);
+    const subFolders = await fetchArchiveContents(archiveRoot.name);
+
+    for (const sub of subFolders) {
+
+      const fullPath = `${archiveRoot.name}/${sub.name}`;
+
+      let meta = await fetchReadme(fullPath, sub.name);
+      if (!meta) meta = generateMeta(sub.name);
+
+      const row = `
+        <tr>
+          <td>
+            <a href="https://${owner}.github.io/${repo}/${fullPath}/index.html"
+               target="_blank"
+               rel="noopener">
+               ${fullPath}
+            </a>
+          </td>
+          <td>${meta.title}</td>
+          <td>${meta.description}</td>
+          <td>${meta.keywords}</td>
+        </tr>
+      `;
+
+      tbody.append(row);
     }
-
-    const row = `
-      <tr>
-        <td>
-          <a href="https://${owner}.github.io/${repo}/${dir.name}/index.html"
-             target="_blank"
-             rel="noopener">
-             ${dir.name}
-          </a>
-        </td>
-        <td>${meta.title}</td>
-        <td>${meta.description}</td>
-        <td>${meta.keywords}</td>
-      </tr>
-    `;
-
-    tbody.append(row);
   }
 
   $('#archiveTable').DataTable({
@@ -293,7 +294,7 @@ async function init() {
     language: {
       search: "Ara:",
       lengthMenu: "Sayfa başına _MENU_ kayıt",
-      info: "_TOTAL_ klasörden _START_ - _END_ gösteriliyor",
+      info: "_TOTAL_ içerikten _START_ - _END_ gösteriliyor",
       paginate: {
         previous: "Önceki",
         next: "Sonraki"
