@@ -196,7 +196,6 @@ fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.htm
 <script>
 const owner = "bandanee";
 const repo = "DailyMind";
-const branch = "main";
 
 function generateMeta(dirName) {
   return {
@@ -208,30 +207,19 @@ function generateMeta(dirName) {
 
 async function fetchFolders() {
   try {
-    const res = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/contents?ref=${branch}`
-    );
-
+    const res = await fetch("archives.json");
     const items = await res.json();
 
-    if (!Array.isArray(items)) {
-      console.error("API hata verdi:", items);
-      return [];
-    }
-
-    return items
-      .filter(item =>
-        item.type === "dir" &&
-        item.name.toLowerCase().startsWith("arsiv")
-      )
-      .sort((a, b) => {
-        const numA = parseInt(a.name.replace("arsiv", "")) || 1;
-        const numB = parseInt(b.name.replace("arsiv", "")) || 1;
-        return numA - numB;
-      });
+    return items.sort((a, b) => {
+      const getNumber = name => {
+        const match = name.match(/^arsiv(\d+)?$/i);
+        return match && match[1] ? parseInt(match[1]) : 1;
+      };
+      return getNumber(a) - getNumber(b);
+    });
 
   } catch (e) {
-    console.error(e);
+    console.error("JSON yüklenemedi:", e);
     return [];
   }
 }
@@ -239,21 +227,18 @@ async function fetchFolders() {
 async function init() {
   const folders = await fetchFolders();
   const tbody = $("#archiveTable tbody");
+  tbody.empty();
 
-  if (folders.length === 0) {
-    console.log("Arsiv klasörü bulunamadı");
-  }
-
-  folders.forEach(dir => {
-    const meta = generateMeta(dir.name);
+  folders.forEach(name => {
+    const meta = generateMeta(name);
 
     const row = `
       <tr>
         <td>
-          <a href="https://${owner}.github.io/${repo}/${dir.name}/index.html"
+          <a href="https://${owner}.github.io/${repo}/${name}/index.html"
              target="_blank"
              rel="noopener">
-            ${dir.name}
+            ${name}
           </a>
         </td>
         <td>${meta.title}</td>
@@ -265,6 +250,10 @@ async function init() {
     tbody.append(row);
   });
 
+  if ($.fn.DataTable.isDataTable('#archiveTable')) {
+    $('#archiveTable').DataTable().destroy();
+  }
+
   $('#archiveTable').DataTable({
     responsive: true,
     pageLength: 10,
@@ -273,10 +262,7 @@ async function init() {
       search: "Ara:",
       lengthMenu: "Sayfa başına _MENU_ kayıt",
       info: "_TOTAL_ klasörden _START_ - _END_ gösteriliyor",
-      paginate: {
-        previous: "Önceki",
-        next: "Sonraki"
-      },
+      paginate: { previous: "Önceki", next: "Sonraki" },
       zeroRecords: "Eşleşen kayıt bulunamadı"
     }
   });
