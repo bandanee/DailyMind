@@ -253,9 +253,19 @@ async function fetchReadme(path, dirName) {
 }
 
 async function init() {
-  const tbody = $("#archiveTable tbody");
+
+  const table = $('#archiveTable');
+  const tbody = table.find("tbody");
+
+  // Eğer daha önce başlatıldıysa yok et
+  if ($.fn.DataTable.isDataTable(table)) {
+    table.DataTable().destroy();
+  }
+
+  tbody.empty();
 
   const archiveRoots = await fetchArchiveRoots();
+  let allRows = [];
 
   for (const archiveRoot of archiveRoots) {
 
@@ -268,7 +278,7 @@ async function init() {
       let meta = await fetchReadme(fullPath, sub.name);
       if (!meta) meta = generateMeta(sub.name);
 
-      const row = `
+      allRows.push(`
         <tr>
           <td>
             <a href="https://${owner}.github.io/${repo}/${fullPath}/index.html"
@@ -281,16 +291,19 @@ async function init() {
           <td>${meta.description}</td>
           <td>${meta.keywords}</td>
         </tr>
-      `;
-
-      tbody.append(row);
+      `);
     }
   }
 
-  $('#archiveTable').DataTable({
+  // 🔥 Tek seferde ekle
+  tbody.html(allRows.join(""));
+
+  // 🔥 EN SON DataTable başlat
+  table.DataTable({
     responsive: true,
     pageLength: 10,
     lengthMenu: [5,10,20,50],
+    destroy: true,
     language: {
       search: "Ara:",
       lengthMenu: "Sayfa başına _MENU_ kayıt",
