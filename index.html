@@ -194,7 +194,91 @@ fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.htm
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
-const owner = "bandanee"; const repo = "DailyMind"; const path = "arsiv"; // Örnek metadata, istersen GitHub üzerinden README.md çekip parse edebilirsin function generateMeta(dirName) { return { title: dirName.replace(/[-_]/g, ' '), description: DailyMind arşiv klasörü: ${dirName}, keywords: DailyMind, ${dirName}, Arşiv, Klasör }; } async function fetchFolders() { try { const res = await fetch(https://api.github.com/repos/${owner}/${repo}/contents/${path}); const items = await res.json(); return items.filter(item => item.type === "dir"); } catch(e) { console.error(e); return []; } } async function init() { const folders = await fetchFolders(); const tbody = $("#archiveTable tbody"); folders.forEach(dir => { const meta = generateMeta(dir.name); const row = <tr> <td><a href="https://${owner}.github.io/${repo}/${path}/${dir.name}/index.html" target="_blank" rel="noopener">${dir.name}</a></td> <td>${meta.title}</td> <td>${meta.description}</td> <td>${meta.keywords}</td> </tr> ; tbody.append(row); }); $('#archiveTable').DataTable({ responsive: true, pageLength: 10, lengthMenu: [5,10,20,50], language: { search: "Ara:", lengthMenu: "Sayfa başına _MENU_ kayıt", info: "_TOTAL_ klasörden _START_ - _END_ gösteriliyor", paginate: { previous: "Önceki", next: "Sonraki" }, zeroRecords: "Eşleşen kayıt bulunamadı" } }); } init();
+const owner = "bandanee";
+const repo = "DailyMind";
+
+// Metadata üretimi
+function generateMeta(dirName) {
+  return {
+    title: dirName.replace(/[-_]/g, " "),
+    description: `DailyMind arşiv klasörü: ${dirName}`,
+    keywords: `DailyMind, ${dirName}, Arşiv, Klasör`
+  };
+}
+
+// Root klasörleri çek
+async function fetchFolders() {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents`
+    );
+
+    const items = await res.json();
+
+    return items
+      .filter(item =>
+        item.type === "dir" &&
+        item.name.toLowerCase().startsWith("arsiv")
+      )
+      .sort((a, b) => {
+        // arsiv, arsiv2, arsiv10 doğru sıralansın
+        const numA = parseInt(a.name.replace("arsiv", "")) || 1;
+        const numB = parseInt(b.name.replace("arsiv", "")) || 1;
+        return numA - numB;
+      });
+
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
+
+async function init() {
+
+  const folders = await fetchFolders();
+  const tbody = $("#archiveTable tbody");
+
+  folders.forEach(dir => {
+
+    const meta = generateMeta(dir.name);
+
+    const row = `
+      <tr>
+        <td>
+          <a href="https://${owner}.github.io/${repo}/${dir.name}/index.html"
+             target="_blank"
+             rel="noopener">
+            ${dir.name}
+          </a>
+        </td>
+        <td>${meta.title}</td>
+        <td>${meta.description}</td>
+        <td>${meta.keywords}</td>
+      </tr>
+    `;
+
+    tbody.append(row);
+  });
+
+  $('#archiveTable').DataTable({
+    responsive: true,
+    pageLength: 10,
+    lengthMenu: [5,10,20,50],
+    language: {
+      search: "Ara:",
+      lengthMenu: "Sayfa başına _MENU_ kayıt",
+      info: "_TOTAL_ klasörden _START_ - _END_ gösteriliyor",
+      paginate: {
+        previous: "Önceki",
+        next: "Sonraki"
+      },
+      zeroRecords: "Eşleşen kayıt bulunamadı"
+    }
+  });
+}
+
+init();
+  
 </script>
  
  
