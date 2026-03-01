@@ -193,10 +193,9 @@ fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.htm
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-<script>
 const owner = "bandanee";
 const repo = "DailyMind";
-const path = "arsiv";
+const paths = ["arsiv", "arsiv2"]; // Buraya eklemek istediğiniz tüm klasörleri yazabilirsiniz
 
 // Generate meta info for a folder
 function generateMeta(dirName) {
@@ -207,13 +206,12 @@ function generateMeta(dirName) {
   };
 }
 
-// Fetch folders from GitHub repository
-async function fetchFolders() {
+// Fetch folders from a given path
+async function fetchFolders(path) {
   try {
     const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`);
     const items = await res.json();
-    // Sadece 'arsiv' ile başlamayan dizinleri tabloya ekle
-    return items.filter(item => item.type === "dir" && !item.name.startsWith("arsiv"));
+    return items.filter(item => item.type === "dir"); // artık filter ile dışlamıyoruz
   } catch (e) {
     console.error(e);
     return [];
@@ -222,21 +220,23 @@ async function fetchFolders() {
 
 // Initialize table
 async function init() {
-  const folders = await fetchFolders();
   const tbody = $("#archiveTable tbody");
-
-  folders.forEach(dir => {
-    const meta = generateMeta(dir.name);
-    const row = `
-      <tr>
-        <td><a href="https://${owner}.github.io/${repo}/${path}/${dir.name}/index.html" target="_blank" rel="noopener">${dir.name}</a></td>
-        <td>${meta.title}</td>
-        <td>${meta.description}</td>
-        <td>${meta.keywords}</td>
-      </tr>
-    `;
-    tbody.append(row);
-  });
+  
+  for (const path of paths) {
+    const folders = await fetchFolders(path);
+    folders.forEach(dir => {
+      const meta = generateMeta(dir.name);
+      const row = `
+        <tr>
+          <td><a href="https://${owner}.github.io/${repo}/${path}/${dir.name}/index.html" target="_blank" rel="noopener">${dir.name}</a></td>
+          <td>${meta.title}</td>
+          <td>${meta.description}</td>
+          <td>${meta.keywords}</td>
+        </tr>
+      `;
+      tbody.append(row);
+    });
+  }
 
   $('#archiveTable').DataTable({
     responsive: true,
@@ -253,7 +253,6 @@ async function init() {
 }
 
 init();
-</script>
  
 
 
