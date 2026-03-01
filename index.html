@@ -196,7 +196,7 @@ fetch('https://raw.githubusercontent.com/bandanee/DailyMind/main/kategoriler.htm
 <script>
 const owner = "bandanee";
 const repo = "DailyMind";
-const path = "arsiv";
+const basePath = ""; // Ana repository kökü veya istediğin path
 
 // Generate meta info for a folder
 function generateMeta(dirName) {
@@ -207,12 +207,13 @@ function generateMeta(dirName) {
   };
 }
 
-// Fetch folders from GitHub repository
-async function fetchFolders() {
+// Fetch folders from GitHub repository and filter by prefix
+async function fetchFolders(prefix = "arsiv") {
   try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`);
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${basePath}`);
     const items = await res.json();
-    return items.filter(item => item.type === "dir");
+    // sadece dizinleri ve 'arsiv' ile başlayanları al
+    return items.filter(item => item.type === "dir" && item.name.startsWith(prefix));
   } catch (e) {
     console.error(e);
     return [];
@@ -221,14 +222,14 @@ async function fetchFolders() {
 
 // Initialize table
 async function init() {
-  const folders = await fetchFolders();
+  const folders = await fetchFolders(); // prefix default: "arsiv"
   const tbody = $("#archiveTable tbody");
 
   folders.forEach(dir => {
     const meta = generateMeta(dir.name);
     const row = `
       <tr>
-        <td><a href="https://${owner}.github.io/${repo}/${path}/${dir.name}/index.html" target="_blank" rel="noopener">${dir.name}</a></td>
+        <td><a href="https://${owner}.github.io/${repo}/${dir.name}/index.html" target="_blank" rel="noopener">${dir.name}</a></td>
         <td>${meta.title}</td>
         <td>${meta.description}</td>
         <td>${meta.keywords}</td>
@@ -253,7 +254,6 @@ async function init() {
 
 init();
 </script>
- 
  
 
 
